@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Skills Challenge — Ujian Praktik Pemrograman Web II</title>
+  
+  <!-- Inter & JetBrains Mono Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- SheetJS for Excel Export -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <style>
+    :root {
+      --navy-900: #0d1117;
+      --navy-800: #161b22;
+      --navy-700: #21262d;
+      --navy-border: #30363d;
+      --accent-blue: #0969da;
+      --accent-blue-hover: #0856b3;
+      --accent-green: #238636;
+      --accent-green-hover: #2ea043;
+      --accent-red: #da3633;
+      --accent-orange: #d29922;
+      --text-main: #24292f;
+      --text-muted: #57606a;
+      --bg-body: #f6f8fa;
+      --card-bg: #ffffff;
+      --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-code: 'JetBrains Mono', SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    body {
+      font-family: var(--font-ui);
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .font-mono {
+      font-family: var(--font-code);
+    }
+
+    .brand-logo-badge {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #24292f 0%, #0d1117 100%);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .card-custom {
+      background: var(--card-bg);
+      border: 1px solid #d0d7de;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(140, 149, 159, 0.12);
+      transition: all 0.2s ease;
+    }
+
+    .btn-github-primary {
+      background-color: var(--accent-green);
+      color: #ffffff;
+      border: 1px solid rgba(27, 31, 36, 0.15);
+      border-radius: 8px;
+      font-weight: 600;
+      padding: 0.6rem 1.4rem;
+      transition: all 0.15s ease-in-out;
+    }
+    .btn-github-primary:hover {
+      background-color: var(--accent-green-hover);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .btn-github-blue {
+      background-color: var(--accent-blue);
+      color: #ffffff;
+      border: 1px solid rgba(27, 31, 36, 0.15);
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .btn-github-blue:hover {
+      background-color: var(--accent-blue-hover);
+      color: #ffffff;
+    }
+
+    .btn-outline-custom {
+      border: 1px solid #d0d7de;
+      background: #ffffff;
+      color: #24292f;
+      border-radius: 8px;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+    }
+    .btn-outline-custom:hover {
+      background-color: #f3f4f6;
+      border-color: #afb8c1;
+    }
+
+    /* Option Radio Styling */
+    .option-card {
+      border: 2px solid #e1e4e8;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background-color: #ffffff;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .option-card:hover {
+      border-color: var(--accent-blue);
+      background-color: #f6f8fa;
+    }
+    .option-card.selected {
+      border-color: var(--accent-blue);
+      background-color: #ebf5ff;
+    }
+    .option-card .badge-opt {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      background: #eaeef2;
+      color: #24292f;
+      flex-shrink: 0;
+    }
+    .option-card.selected .badge-opt {
+      background: var(--accent-blue);
+      color: #ffffff;
+    }
+
+    /* Terminal Console Style */
+    .terminal-window {
+      background: #0d1117;
+      border-radius: 10px;
+      border: 1px solid #30363d;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+    .terminal-header {
+      background: #161b22;
+      padding: 8px 16px;
+      border-bottom: 1px solid #30363d;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .terminal-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dot-red { background-color: #ff5f56; }
+    .dot-yellow { background-color: #ffbd2e; }
+    .dot-green { background-color: #27c93f; }
+
+    .terminal-input-wrapper {
+      padding: 14px 18px;
+      background-color: #0d1117;
+    }
+    .terminal-textarea {
+      background: transparent;
+      border: none;
+      color: #58a6ff;
+      font-family: var(--font-code);
+      font-size: 0.98rem;
+      line-height: 1.5;
+      width: 100%;
+      outline: none;
+      resize: vertical;
+      min-height: 85px;
+    }
+    .terminal-textarea::placeholder {
+      color: #484f58;
+    }
+
+    /* Timer Display States */
+    .timer-badge {
+      font-family: var(--font-code);
+      font-weight: 700;
+      font-size: 1.15rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #ffffff;
+      border: 1.5px solid #d0d7de;
+      color: #24292f;
+      transition: all 0.3s ease;
+    }
+    .timer-warning {
+      background-color: #fff8c5 !important;
+      border-color: #d29922 !important;
+      color: #9e6a03 !important;
+      animation: pulse-orange 1s infinite;
+    }
+    .timer-danger {
+      background-color: #ffebe9 !important;
+      border-color: #cf222e !important;
+      color: #cf222e !important;
+      animation: pulse-red 0.5s infinite;
+    }
+    @keyframes pulse-orange {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    @keyframes pulse-red {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    /* Score summary badges */
+    .metric-box {
+      background: #f6f8fa;
+      border: 1px solid #d0d7de;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .metric-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--navy-900);
+    }
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* Custom Modal Backdrops */
+    .custom-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(13, 17, 23, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1050;
+      backdrop-filter: blur(4px);
+    }
+    .custom-modal-card {
+      background: #fff;
+      border-radius: 14px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      overflow: hidden;
+      animation: fadeInModal 0.2s ease-out;
+    }
+    @keyframes fadeInModal {
+      from { opacity: 0; transform: translateY(-12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .badge-podium {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+    .gold-rank { background: #ffd700; color: #856404; }
+    .silver-rank { background: #e0e0e0; color: #495057; }
+    .bronze-rank { background: #cd7f32; color: #ffffff; }
+
+    .nav-tabs .nav-link {
+      color: var(--text-muted);
+      font-weight: 600;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 10px 18px;
+    }
+    .nav-tabs .nav-link.active {
+      color: var(--accent-blue);
+      border-bottom: 2px solid var(--accent-blue);
+      background: transparent;
+    }
+
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top py-2">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#" onclick="app.navTo('home'); return false;">
+        <div class="brand-logo-badge">
+          <i class="bi bi-git fs-4 text-warning"></i>
+        </div>
+        <div>
+          <span class="fw-bold fs-5 text-dark">GitHub Skills Challenge</span>
+          <span class="d-none d-sm-block text-muted small" style="line-height: 1;">Ujian Praktik Pemrograman Web II</span>
+        </div>
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <button id="navLeaderboardBtn" class="btn btn-outline-custom btn-sm d-flex align-items-center gap-2" onclick="app.navTo('leaderboard')">
+          <i class="bi bi-trophy text-warning"></i>
+          <span>Leaderboard</span>
+        </button>
+        <button id="navRestartBtn" class="btn btn-outline-danger btn-sm d-none align-items-center gap-1" onclick="app.confirmResetExam()">
+          <i class="bi bi-arrow-counterclockwise"></i>
+          <span>Keluar Ujian</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-4 flex-grow-1">
+
+    <!-- VIEW 1: LANDING PAGE -->
+    <div id="viewHome" class="fade-in">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          
+          <div class="card card-custom p-4 p-md-5 mb-4 border-0" style="background: linear-gradient(180deg, #ffffff 0%, #f6f8fa 100%);">
+            <div class="row align-items-center g-4">
+              <div class="col-md-7">
+                <div class="d-inline-flex align-items-center gap-2 badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill mb-3">
+                  <i class="bi bi-award-fill"></i> Ujian Praktik & Teori Resmi
+                </div>
+                <h1 class="display-6 fw-bold text-dark mb-2">GitHub Skills Challenge</h1>
+                <p class="lead text-muted mb-4 fs-6">
+                  Ujian terstandarisasi untuk menguji penguasaan Version Control System (Git) dan ekosistem kolaborasi GitHub.
+                </p>
+
+                <!-- Exam Specs Grid -->
+                <div class="row g-2 mb-4">
+                  <div class="col-6 col-sm-3">
+                    <div class="p-2 border rounded bg-white text-center">
+                      <div class="fw-bold text-dark fs-5">20</div>
+                      <div class="text-muted small">Total Soal</div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-3">
+                    <div class="p-2 border rounded bg-white text-center">
+                      <div class="fw-bold text-primary fs-5">30s</div>
+                      <div class="text-muted small">Per Soal</div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-3">
+                    <div class="p-2 border rounded bg-white text-center">
+                      <div class="fw-bold text-success fs-5">100</div>
+                      <div class="text-muted small">Nilai Maks</div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-3">
+                    <div class="p-2 border rounded bg-white text-center">
+                      <div class="fw-bold text-warning fs-5">10m</div>
+                      <div class="text-muted small">Nominal Total</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2">
+                  <a href="#identitySection" class="btn btn-github-primary d-inline-flex align-items-center gap-2">
+                    <i class="bi bi-play-circle-fill"></i> Mulai Ujian Sekarang
+                  </a>
+                  <button class="btn btn-outline-custom d-inline-flex align-items-center gap-2" onclick="app.navTo('leaderboard')">
+                    <i class="bi bi-bar-chart-line-fill text-primary"></i> Peringkat Mahasiswa
+                  </button>
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <div class="terminal-window">
+                  <div class="terminal-header">
+                    <div class="terminal-dots">
+                      <span class="terminal-dot dot-red"></span>
+                      <span class="terminal-dot dot-yellow"></span>
+                      <span class="terminal-dot dot-green"></span>
+                    </div>
+                    <span class="text-secondary small font-mono">bash — git-exam.sh</span>
+                    <span></span>
+                  </div>
+                  <div class="p-3 font-mono small text-light" style="font-size: 0.8rem; line-height: 1.6;">
+                    <span class="text-success">$</span> git status<br>
+                    <span class="text-muted">On branch master</span><br>
+                    <span class="text-muted">Changes not staged for commit:</span><br>
+                    <span class="text-warning">&nbsp;&nbsp;modified: index.html</span><br>
+                    <span class="text-success">$</span> git add .<br>
+                    <span class="text-success">$</span> git commit -m "Siap Ujian"<br>
+                    <span class="text-info">[master 4f91b] Siap Ujian</span><br>
+                    <span class="text-success">$</span> echo "Good Luck, Developers!"
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FORM REGISTRASI IDENTITAS -->
+          <div id="identitySection" class="card card-custom p-4 p-md-4">
+            <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+              <i class="bi bi-person-bounding-box text-primary"></i>
+              Formulir Identitas Peserta Ujian
+            </h5>
+            <p class="text-muted small mb-3">
+              Pastikan data identitas Anda valid. Nama dan NIM akan dicatat secara otomatis dalam laporan ujian dan tabel leaderboard.
+            </p>
+
+            <form id="studentAuthForm" onsubmit="app.handleAuthSubmit(event)">
+              <div class="row g-3">
+                <div class="col-md-5">
+                  <label class="form-label small fw-semibold">Nama Lengkap Mahasiswa *</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-person"></i></span>
+                    <input type="text" id="inputName" class="form-control" placeholder="Contoh: Muhammad Rizki" required>
+                  </div>
+                  <div class="invalid-feedback" id="feedbackName">Nama wajib diisi minimal 3 karakter.</div>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label small fw-semibold">NIM (Nomor Induk Mahasiswa) *</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-card-heading"></i></span>
+                    <input type="text" id="inputNim" class="form-control font-mono" placeholder="Contoh: 2110512001" required>
+                  </div>
+                  <div class="invalid-feedback" id="feedbackNim">NIM wajib diisi dengan benar.</div>
+                </div>
+
+                <div class="col-md-3">
+                  <label class="form-label small fw-semibold">Kelas *</label>
+                  <select id="inputClass" class="form-select" required>
+                    <option value="" disabled selected>Pilih Kelas...</option>
+                    <option value="PW2-IF1">PW2 - IF 1 (Reguler A)</option>
+                    <option value="PW2-IF2">PW2 - IF 2 (Reguler B)</option>
+                    <option value="PW2-IF3">PW2 - IF 3 (Reguler C)</option>
+                    <option value="PW2-EXT">PW2 - Paralel / Eksekutif</option>
+                  </select>
+                  <div class="invalid-feedback" id="feedbackClass">Pilih kelas yang valid.</div>
+                </div>
+              </div>
+
+              <!-- Rules & Agreement -->
+              <div class="bg-light p-3 rounded mt-3 border">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="checkTerms" required>
+                  <label class="form-check-label small text-muted" for="checkTerms">
+                    Saya menyatakan siap mengerjakan 20 butir soal secara mandiri. Saya memahami setiap soal dibatasi waktu ketat 30 detik dan jawaban langsung terkunci saat waktu berakhir.
+                  </label>
+                </div>
+              </div>
+
+              <div class="mt-4 text-end">
+                <button id="btnStartExam" type="submit" class="btn btn-github-primary px-4 py-2">
+                  <i class="bi bi-play-fill fs-5 align-middle"></i> Konfirmasi & Mulai Soal 01
+                </button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 2: EXAM RUNNER -->
+    <div id="viewExam" class="d-none">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          
+          <!-- Student Status Header -->
+          <div class="card card-custom px-3 py-2 mb-3">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+              <div class="d-flex align-items-center gap-2">
+                <div class="bg-primary-subtle text-primary px-2 py-1 rounded small fw-bold font-mono" id="examBadgeClass">PW2-IF1</div>
+                <div>
+                  <span class="fw-bold text-dark d-block" id="examStudentName">Nama Mahasiswa</span>
+                  <span class="text-muted small font-mono" id="examStudentNim">NIM: 00000000</span>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center gap-3">
+                <div class="text-end d-none d-sm-block">
+                  <div class="text-muted small">Status Pengerjaan</div>
+                  <div class="fw-bold text-dark small" id="examProgressCount">Soal 01 dari 20</div>
+                </div>
+                <!-- Dynamic Countdown Box -->
+                <div id="timerContainer" class="timer-badge">
+                  <i class="bi bi-stopwatch-fill"></i>
+                  <span id="timerSeconds">30</span>s
+                </div>
+              </div>
+            </div>
+
+            <!-- Single Question Progress Bar -->
+            <div class="progress mt-2" style="height: 6px;">
+              <div id="questionProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <!-- Question Card -->
+          <div class="card card-custom p-4 mb-3 position-relative">
+            
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+              <span id="badgeCategory" class="badge bg-secondary-subtle text-secondary px-3 py-1 rounded-pill fw-semibold">
+                Kategori: Teori Version Control
+              </span>
+              <span class="text-muted small fw-semibold">
+                Bobot: <span class="text-success fw-bold">5 Poin</span>
+              </span>
+            </div>
+
+            <!-- Prompt Title -->
+            <h4 class="fw-bold mb-3 text-dark" id="questionTitle">Memuat Pertanyaan...</h4>
+            
+            <!-- Additional Guidance / Description -->
+            <div id="questionDesc" class="text-muted mb-4 small" style="line-height: 1.6;"></div>
+
+            <!-- TEORI: Opsi Pilihan Ganda -->
+            <div id="areaTheory" class="mb-4 d-none">
+              <div class="d-flex flex-column gap-2" id="theoryOptionsList">
+                <!-- Dynamically injected via JS -->
+              </div>
+            </div>
+
+            <!-- PRAKTIK: Terminal Monospace Editor -->
+            <div id="areaPractice" class="mb-4 d-none">
+              <label class="form-label small fw-bold text-dark d-flex align-items-center justify-content-between">
+                <span><i class="bi bi-terminal-fill text-dark me-1"></i> Terminal Console — Ketik Perintah Git di Bawah:</span>
+                <span class="text-muted fw-normal font-mono small">Case Sensitive</span>
+              </label>
+              
+              <div class="terminal-window">
+                <div class="terminal-header">
+                  <div class="terminal-dots">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                  </div>
+                  <span class="text-secondary small font-mono">student@pw2-git-exam:~/project</span>
+                  <button class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Bersihkan baris" onclick="app.clearTerminal()">
+                    <i class="bi bi-x-circle"></i>
+                  </button>
+                </div>
+                <div class="terminal-input-wrapper">
+                  <textarea id="practiceInput" class="terminal-textarea" rows="3" placeholder="Ketik perintah di sini... Contoh: git init" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+                </div>
+              </div>
+              <div class="form-text small mt-1 text-muted">
+                <i class="bi bi-info-circle"></i> Spasi berlebih tidak mempengaruhi penilaian. Perhatikan ketelitian opsi (misal <code>-m</code> berbeda dengan <code>-M</code>).
+              </div>
+            </div>
+
+            <!-- Action Buttons Footer -->
+            <div class="d-flex justify-content-between align-items-center pt-3 border-top mt-2">
+              <button id="btnSkipQuestion" class="btn btn-outline-secondary d-flex align-items-center gap-1" onclick="app.submitCurrentAnswer(true)">
+                <i class="bi bi-chevron-double-right"></i> Lewati Soal
+              </button>
+
+              <button id="btnSubmitQuestion" class="btn btn-github-primary px-4 d-flex align-items-center gap-2" onclick="app.submitCurrentAnswer(false)">
+                <span>Kirim Jawaban</span>
+                <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Step Indicators Bar (1-20 dots) -->
+          <div class="card card-custom p-3">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span class="small fw-semibold text-muted">Navigasi Pengerjaan Soal (Otomatis Maju)</span>
+              <span class="small text-muted font-mono" id="navIndicatorSummary">1 / 20</span>
+            </div>
+            <div class="d-flex flex-wrap gap-1 justify-content-between" id="questionDotsContainer">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: EXAM RESULTS -->
+    <div id="viewResult" class="d-none fade-in">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          
+          <!-- Hero Score Card -->
+          <div class="card card-custom p-4 p-md-5 mb-4 text-center border-0" style="background: linear-gradient(180deg, #ffffff 0%, #f6f8fa 100%);">
+            <div class="mb-3" id="resultHeroIcon">
+              <i class="bi bi-check-circle-fill text-success" style="font-size: 3.5rem;"></i>
+            </div>
+            <h2 class="fw-bold mb-1" id="resultScoreHeading">Ujian Selesai!</h2>
+            <p class="text-muted mb-3" id="resultStudentMeta">Nama Mahasiswa (NIM) — Kelas</p>
+            
+            <div class="d-inline-flex flex-column align-items-center justify-content-center p-3 rounded-4 mb-3" style="background: #ffffff; border: 2px solid #e1e4e8; min-width: 220px;">
+              <span class="text-muted small fw-bold">NILAI AKHIR</span>
+              <span class="display-3 fw-bold text-primary font-mono my-0" id="resultFinalScore">0</span>
+              <span class="badge rounded-pill px-3 py-1 mt-1" id="resultGradeBadge">Sangat Baik</span>
+            </div>
+
+            <p class="text-muted small max-w-md mx-auto" id="resultFeedbackText">
+              Jawaban Anda telah dievaluasi secara otomatis oleh validator deterministik.
+            </p>
+
+            <!-- Metrics Breakdown -->
+            <div class="row g-2 mt-2">
+              <div class="col-6 col-md-3">
+                <div class="metric-box">
+                  <div class="metric-value text-success" id="resCorrectCount">0</div>
+                  <div class="metric-label">Benar (x5 Poin)</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="metric-box">
+                  <div class="metric-value text-danger" id="resWrongCount">0</div>
+                  <div class="metric-label">Salah / Kosong</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="metric-box">
+                  <div class="metric-value text-primary" id="resTheoryRatio">0/10</div>
+                  <div class="metric-label">Teori Benar</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="metric-box">
+                  <div class="metric-value text-info" id="resPracticeRatio">0/10</div>
+                  <div class="metric-label">Praktik Benar</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-center gap-2 mt-4">
+              <button class="btn btn-github-primary d-flex align-items-center gap-2" onclick="app.navTo('leaderboard')">
+                <i class="bi bi-trophy-fill text-warning"></i> Lihat Peringkat
+              </button>
+              <button class="btn btn-outline-custom d-flex align-items-center gap-2" onclick="app.toggleReviewTable()">
+                <i class="bi bi-card-checklist"></i> <span id="btnReviewLabel">Lihat Review Jawaban</span>
+              </button>
+              <button class="btn btn-outline-secondary d-flex align-items-center gap-2" onclick="app.navTo('home')">
+                <i class="bi bi-house"></i> Kembali ke Beranda
+              </button>
+            </div>
+          </div>
+
+          <!-- Answer Review Section (Collapsible) -->
+          <div id="reviewContainer" class="card card-custom p-4 mb-4 d-none">
+            <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+              <i class="bi bi-journal-text text-primary"></i> Rincian Review Soal 1 s/d 20
+            </h5>
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover align-middle small">
+                <thead class="table-light">
+                  <tr>
+                    <th style="width: 50px;">No</th>
+                    <th style="width: 80px;">Tipe</th>
+                    <th>Pertanyaan & Kunci Jawaban</th>
+                    <th>Jawaban Anda</th>
+                    <th style="width: 80px;" class="text-center">Status</th>
+                    <th style="width: 70px;" class="text-center">Poin</th>
+                  </tr>
+                </thead>
+                <tbody id="reviewTableBody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: LEADERBOARD & STATS -->
+    <div id="viewLeaderboard" class="d-none fade-in">
+      <div class="row justify-content-center">
+        <div class="col-lg-11">
+          
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3">
+            <div>
+              <h3 class="fw-bold text-dark mb-1 d-flex align-items-center gap-2">
+                <i class="bi bi-trophy-fill text-warning"></i> Leaderboard Mahasiswa
+              </h3>
+              <p class="text-muted small mb-0">Pemeringkatan nilai resmi Ujian Pemrograman Web II (Git & GitHub)</p>
+            </div>
+
+            <div class="d-flex gap-2">
+              <button class="btn btn-success d-flex align-items-center gap-2" onclick="app.exportLeaderboardToExcel()">
+                <i class="bi bi-file-earmark-excel-fill"></i> Ekspor ke Excel (.xlsx)
+              </button>
+              <button class="btn btn-outline-danger btn-sm d-flex align-items-center gap-1" onclick="app.confirmClearLeaderboard()">
+                <i class="bi bi-trash"></i> Reset Data
+              </button>
+            </div>
+          </div>
+
+          <!-- Top 3 Podium Cards -->
+          <div class="row g-3 mb-4" id="topPodiumContainer">
+            <!-- Injected by JS -->
+          </div>
+
+          <!-- Statistics Summary Banner -->
+          <div class="card card-custom p-3 mb-4 bg-white">
+            <div class="row text-center g-2" id="leaderboardStatsBar">
+              <div class="col-6 col-md-2 border-end">
+                <span class="text-muted small d-block">Total Peserta</span>
+                <span class="fs-5 fw-bold text-dark font-mono" id="statTotalStudents">0</span>
+              </div>
+              <div class="col-6 col-md-2 border-end">
+                <span class="text-muted small d-block">Rata-rata Kelas</span>
+                <span class="fs-5 fw-bold text-primary font-mono" id="statAvgScore">0</span>
+              </div>
+              <div class="col-6 col-md-2 border-end">
+                <span class="text-muted small d-block">Nilai Tertinggi</span>
+                <span class="fs-5 fw-bold text-success font-mono" id="statMaxScore">0</span>
+              </div>
+              <div class="col-6 col-md-2 border-end">
+                <span class="text-muted small d-block">Nilai Terendah</span>
+                <span class="fs-5 fw-bold text-danger font-mono" id="statMinScore">0</span>
+              </div>
+              <div class="col-6 col-md-2 border-end">
+                <span class="text-muted small d-block">Perfect Score (100)</span>
+                <span class="fs-5 fw-bold text-warning font-mono" id="statPerfectCount">0</span>
+              </div>
+              <div class="col-6 col-md-2">
+                <span class="text-muted small d-block">Lulus (&ge;70)</span>
+                <span class="fs-5 fw-bold text-info font-mono" id="statPassedRatio">0%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filter & Search Controls -->
+          <div class="card card-custom p-3 mb-3">
+            <div class="row g-2 align-items-center">
+              <div class="col-md-5">
+                <div class="input-group">
+                  <span class="input-group-text bg-white"><i class="bi bi-search text-muted"></i></span>
+                  <input type="text" id="filterSearch" class="form-control" placeholder="Cari nama mahasiswa atau NIM..." oninput="app.renderLeaderboardTable()">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <select id="filterClass" class="form-select" onchange="app.renderLeaderboardTable()">
+                  <option value="ALL">Semua Kelas</option>
+                  <option value="PW2-IF1">PW2 - IF 1</option>
+                  <option value="PW2-IF2">PW2 - IF 2</option>
+                  <option value="PW2-IF3">PW2 - IF 3</option>
+                  <option value="PW2-EXT">PW2 - Paralel / Eksekutif</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <input type="date" id="filterDate" class="form-control" onchange="app.renderLeaderboardTable()">
+              </div>
+            </div>
+          </div>
+
+          <!-- Leaderboard Table -->
+          <div class="card card-custom p-0 overflow-hidden mb-4">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                  <tr class="small text-muted">
+                    <th class="text-center" style="width: 70px;">Rank</th>
+                    <th>Mahasiswa</th>
+                    <th>NIM</th>
+                    <th>Kelas</th>
+                    <th class="text-center">Teori</th>
+                    <th class="text-center">Praktik</th>
+                    <th class="text-center">Total Benar</th>
+                    <th class="text-center">Waktu Tempuh</th>
+                    <th class="text-center">Tanggal</th>
+                    <th class="text-end pe-4">Nilai Akhir</th>
+                  </tr>
+                </thead>
+                <tbody id="leaderboardTbody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+            <div id="leaderboardEmptyState" class="text-center p-5 text-muted d-none">
+              <i class="bi bi-inbox fs-1 d-block mb-2 text-secondary"></i>
+              Belum ada data ujian yang sesuai dengan filter.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-white border-top py-3 mt-auto">
+    <div class="container text-center small text-muted">
+      <div><strong>GitHub Skills Challenge</strong> — Modul Evaluasi Version Control System (VCS) Git & GitHub</div>
+      <div class="text-secondary mt-1" style="font-size: 0.75rem;">
+        Identitas dan hasil ujian tersimpan di MySQL lokal; draft sesi aktif tersimpan di browser. Untuk ujian resmi, validasi jawaban, timer, dan autentikasi tetap perlu diamankan di server.
+      </div>
+    </div>
+  </footer>
+
+  <div id="customModal" class="custom-modal-backdrop d-none">
+    <div class="custom-modal-card p-4">
+      <div class="d-flex align-items-center gap-3 mb-3">
+        <div id="modalIconContainer" class="p-2 rounded-circle bg-warning-subtle text-warning fs-4">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+        </div>
+        <div>
+          <h5 class="fw-bold mb-0 text-dark" id="modalTitle">Konfirmasi</h5>
+          <span class="text-muted small" id="modalSub">Perhatian</span>
+        </div>
+      </div>
+      <p class="text-muted small mb-4" id="modalMessage">Pesan dialog akan tampil di sini.</p>
+      <div class="d-flex justify-content-end gap-2" id="modalActions">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * BANK SOAL UJIAN (10 Teori + 10 Praktik)
+     * Nilai: 5 Poin per soal (Total 20 soal = 100 poin)
+     * Waktu: 30 detik per soal
+     */
+    const EXAM_QUESTIONS = [
+      // SOAL TEORI (1 - 10)
+      {
+        id: 1,
+        type: "theory",
+        category: "Teori VCS",
+        title: "Soal 1 — Version Control System",
+        question: "Apa yang dimaksud dengan Version Control System (VCS)?",
+        options: [
+          { key: "A", text: "Sistem untuk mempercepat koneksi internet." },
+          { key: "B", text: "Sistem untuk mencatat, mengelola, dan melacak perubahan berkas dari waktu ke waktu." },
+          { key: "C", text: "Aplikasi untuk mendesain antarmuka web." },
+          { key: "D", text: "Sistem untuk menghapus semua versi berkas lama." }
+        ],
+        correctKey: "B",
+        explanation: "VCS membantu pengembang melacak perubahan, membandingkan versi, dan memulihkan pekerjaan sebelumnya."
+      },
+      {
+        id: 2,
+        type: "theory",
+        category: "Teori Git & GitHub",
+        title: "Soal 2 — Git dan GitHub",
+        question: "Apa perbedaan utama antara Git dan GitHub?",
+        options: [
+          { key: "A", text: "Git adalah bahasa pemrograman, sedangkan GitHub adalah compiler." },
+          { key: "B", text: "Git adalah sistem version control, sedangkan GitHub adalah platform untuk meng-host repository Git dan berkolaborasi." },
+          { key: "C", text: "Git dan GitHub adalah dua nama untuk aplikasi yang sama." },
+          { key: "D", text: "Git hanya digunakan untuk frontend, sedangkan GitHub hanya untuk backend." }
+        ],
+        correctKey: "B",
+        explanation: "Git mengelola riwayat perubahan secara lokal, sedangkan GitHub menyediakan layanan repository jarak jauh dan fitur kolaborasi."
+      },
+      {
+        id: 3,
+        type: "theory",
+        category: "Teori Perintah Git",
+        title: "Soal 3 — git init",
+        question: "Apa fungsi perintah git init?",
+        options: [
+          { key: "A", text: "Mengirim kode ke GitHub." },
+          { key: "B", text: "Menghapus seluruh riwayat repository." },
+          { key: "C", text: "Menginisialisasi repository Git pada direktori yang digunakan." },
+          { key: "D", text: "Mengunduh repository dari GitHub." }
+        ],
+        correctKey: "C",
+        explanation: "git init membuat repositori Git lokal baru dengan membuat subdirektori .git."
+      },
+      {
+        id: 4,
+        type: "theory",
+        category: "Teori Staging Area",
+        title: "Soal 4 — git add",
+        question: "Apa fungsi perintah git add .?",
+        options: [
+          { key: "A", text: "Menambahkan semua berkas dan perubahan yang relevan di direktori saat ini dan subdirektorinya ke staging area, sesuai aturan Git." },
+          { key: "B", text: "Mengirim seluruh kode ke GitHub." },
+          { key: "C", text: "Menghapus semua berkas yang tidak dipakai." },
+          { key: "D", text: "Membuat branch baru bernama add." }
+        ],
+        correctKey: "A",
+        explanation: "Titik (.) menunjukkan direktori saat ini, merekrut perubahan file ke staging index."
+      },
+      {
+        id: 5,
+        type: "theory",
+        category: "Teori Snapshot",
+        title: "Soal 5 — Commit",
+        question: "Apa fungsi git commit -m \"Pesan perubahan\"?",
+        options: [
+          { key: "A", text: "Membuat repository GitHub baru." },
+          { key: "B", text: "Menyimpan snapshot perubahan yang sudah berada di staging area ke riwayat repository lokal, dengan pesan commit." },
+          { key: "C", text: "Mengunduh seluruh branch dari remote." },
+          { key: "D", text: "Menggabungkan dua branch secara otomatis." }
+        ],
+        correctKey: "B",
+        explanation: "Commit merekam riwayat permanen ke database lokal Git dengan pesan identifikasi."
+      },
+      {
+        id: 6,
+        type: "theory",
+        category: "Teori Branching",
+        title: "Soal 6 — Branch",
+        question: "Mengapa branch digunakan dalam pengembangan software?",
+        options: [
+          { key: "A", text: "Untuk menggantikan fungsi compiler." },
+          { key: "B", text: "Untuk menghapus kebutuhan commit." },
+          { key: "C", text: "Untuk memisahkan pekerjaan atau fitur sehingga dapat dikembangkan tanpa langsung mengubah branch utama." },
+          { key: "D", text: "Untuk mengubah repository privat menjadi publik." }
+        ],
+        correctKey: "C",
+        explanation: "Branch memungkinkan isolasi eksperimen dan fitur sebelum di-merge ke branch utama."
+      },
+      {
+        id: 7,
+        type: "theory",
+        category: "Teori Sinkronisasi Remote",
+        title: "Soal 7 — Push dan Pull",
+        question: "Apa perbedaan git push dan git pull?",
+        options: [
+          { key: "A", text: "Push mengambil perubahan, sedangkan pull menghapus perubahan." },
+          { key: "B", text: "Push mengirim commit lokal ke remote, sedangkan pull mengambil perubahan dari remote dan mengintegrasikannya ke branch lokal." },
+          { key: "C", text: "Push membuat folder, sedangkan pull membuat berkas." },
+          { key: "D", text: "Keduanya selalu mempunyai fungsi yang sama." }
+        ],
+        correctKey: "B",
+        explanation: "Push mengunggah riwayat commit ke remote, sedangkan pull mengunduh dan menggabungkannya."
+      },
+      {
+        id: 8,
+        type: "theory",
+        category: "Teori Clone Repository",
+        title: "Soal 8 — Clone",
+        question: "Apa fungsi git clone?",
+        options: [
+          { key: "A", text: "Membuat commit kosong." },
+          { key: "B", text: "Menghapus repository remote." },
+          { key: "C", text: "Mengubah nama branch." },
+          { key: "D", text: "Menyalin repository remote beserta riwayatnya ke lingkungan lokal." }
+        ],
+        correctKey: "D",
+        explanation: "git clone menduplikasi seluruh repository termasuk seluruh commit dan branch."
+      },
+      {
+        id: 9,
+        type: "theory",
+        category: "Teori Kolaborasi Git",
+        title: "Soal 9 — Merge Conflict",
+        question: "Apa yang dimaksud dengan merge conflict?",
+        options: [
+          { key: "A", text: "Kondisi ketika Git tidak dapat menggabungkan perubahan tertentu secara otomatis, misalnya karena perubahan yang bertentangan pada bagian berkas yang sama." },
+          { key: "B", text: "Kondisi ketika koneksi internet terlalu cepat." },
+          { key: "C", text: "Kondisi ketika semua commit terhapus." },
+          { key: "D", text: "Kondisi ketika GitHub tidak memiliki repository." }
+        ],
+        correctKey: "A",
+        explanation: "Konflik terjadi ketika dua commit berbeda mengubah baris kode yang sama dan membutuhkan resolusi manual pengembang."
+      },
+      {
+        id: 10,
+        type: "theory",
+        category: "Teori Sintaks & Opsi Git",
+        title: "Soal 10 — Opsi Perintah Git",
+        question: "Manakah pernyataan yang benar tentang opsi -m, -u, -c, dan -M pada perintah Git?",
+        options: [
+          { key: "A", text: "Semua opsi tersebut memiliki fungsi yang sama." },
+          { key: "B", text: "-m selalu berarti membuat branch, sedangkan -M selalu berarti commit." },
+          { key: "C", text: "-m dapat digunakan untuk pesan commit; -u untuk menetapkan upstream pada konteks tertentu seperti push; -c dapat membuat branch baru melalui git switch -c; dan -M dapat memaksa penggantian nama branch melalui git branch -M." },
+          { key: "D", text: "-m dan -M selalu dapat saling menggantikan." }
+        ],
+        correctKey: "C",
+        explanation: "Arti opsi bergantung pada perintah Git yang digunakan. Huruf kecil dan huruf besar dapat mempunyai fungsi berbeda secara signifikan."
+      },
+
+      // SOAL PRAKTIK (11 - 20)
+      {
+        id: 11,
+        type: "practice",
+        category: "Praktik Terminal Git",
+        title: "Soal 11 — Inisialisasi Repository",
+        question: "Tuliskan perintah untuk menginisialisasi repository Git pada direktori aktif.",
+        guidance: "Gunakan perintah dasar inisialisasi git.",
+        referenceAnswer: "git init",
+        validate: (input) => {
+          if (!input) return false;
+          const tokens = input.trim().split(/\s+/);
+          return tokens.length === 2 && tokens[0] === "git" && tokens[1] === "init";
+        }
+      },
+      {
+        id: 12,
+        type: "practice",
+        category: "Praktik Terminal Git",
+        title: "Soal 12 — Memeriksa Status Repository",
+        question: "Tuliskan perintah untuk melihat status berkas pada repository Git lokal.",
+        guidance: "Periksa status staging dan working tree.",
+        referenceAnswer: "git status",
+        validate: (input) => {
+          if (!input) return false;
+          const tokens = input.trim().split(/\s+/);
+          return tokens.length === 2 && tokens[0] === "git" && tokens[1] === "status";
+        }
+      },
+      {
+        id: 13,
+        type: "practice",
+        category: "Praktik Terminal Git",
+        title: "Soal 13 — Menambahkan Perubahan ke Staging Area",
+        question: "Tuliskan perintah untuk menambahkan semua perubahan yang relevan di direktori saat ini dan subdirektorinya ke staging area.",
+        guidance: "Gunakan tanda titik sebagai argumen direktori aktif.",
+        referenceAnswer: "git add .",
+        validate: (input) => {
+          if (!input) return false;
+          const tokens = input.trim().split(/\s+/);
+          return tokens.length === 3 && tokens[0] === "git" && tokens[1] === "add" && tokens[2] === ".";
+        }
+      },
+      {
+        id: 14,
+        type: "practice",
+        category: "Praktik Terminal Git",
+        title: "Soal 14 — Membuat Commit",
+        question: "Tuliskan perintah untuk membuat commit dengan pesan Menambahkan halaman utama.",
+        guidance: "Gunakan opsi -m (huruf kecil) dan kutip pesan secara tepat. Jangan gunakan -M.",
+        referenceAnswer: 'git commit -m "Menambahkan halaman utama"',
+        validate: (input) => {
+          if (!input) return false;
+          const trimmed = input.trim();
+          // Regex: git + space + commit + space + -m + space + ["']Menambahkan halaman utama["']
+          // Menolak -M secara ketat
+          const regex = /^git\s+commit\s+-m\s+["']Menambahkan halaman utama["']$/;
+          return regex.test(trimmed);
+        }
+      },
+      {
+        id: 15,
+        type: "practice",
+        category: "Praktik Terminal Git",
+        title: "Soal 15 — Memeriksa Branch dan Membuat Branch Baru",
+        question: "Tuliskan dua perintah secara berurutan:\n1. Melihat daftar branch lokal.\n2. Membuat sekaligus berpindah ke branch baru bernama fitur-login.",
+        guidance: "Tuliskan perintah pada 2 baris atau dipisahkan enter. Perintah pertama melihat branch, perintah kedua switch -c.",
+        referenceAnswer: "git branch\ngit switch -c fitur-login",
+        validate: (input) => {
+          if (!input) return false;
+          // Memecah berdasarkan newline atau semicolon jika mahasiswa memisahkan baris
+          const lines = input.trim().split(/[\r\n;]+/).map(l => l.trim()).filter(l => l.length > 0);
+          if (lines.length !== 2) return false;
+          
+          const cmd1 = lines[0].split(/\s+/);
+          const cmd2 = lines[1].split(/\s+/);
+
+          const isCmd1Valid = cmd1.length === 2 && cmd1[0] === "git" && cmd1[1] === "branch";
+          // git switch -c fitur-login OR git checkout -b fitur-login
+          const isCmd2Switch = cmd2.length === 4 && cmd2[0] === "git" && cmd2[1] === "switch" && cmd2[2] === "-c" && cmd2[3] === "fitur-login";
+          const isCmd2Checkout = cmd2.length === 4 && cmd2[0] === "git" && cmd2[1] === "checkout" && cmd2[2] === "-b" && cmd2[3] === "fitur-login";
+
+          return isCmd1Valid && (isCmd2Switch || isCmd2Checkout);
+        }
+      },
+      {
+        id: 16,
+        type: "practice",
+        category: "Praktik Git Remote",
+        title: "Soal 16 — Menambahkan Remote Repository",
+        question: "Tuliskan perintah untuk menambahkan remote bernama origin dengan URL https://github.com/mahasiswa/pemrograman-web-ii.git.",
+        guidance: "Format: git remote add <name> <url>",
+        referenceAnswer: "git remote add origin https://github.com/mahasiswa/pemrograman-web-ii.git",
+        validate: (input) => {
+          if (!input) return false;
+          const tokens = input.trim().split(/\s+/);
+          return tokens.length === 5 && 
+                 tokens[0] === "git" && 
+                 tokens[1] === "remote" && 
+                 tokens[2] === "add" && 
+                 tokens[3] === "origin" && 
+                 tokens[4] === "https://github.com/mahasiswa/pemrograman-web-ii.git";
+        }
+      },
+      {
+        id: 17,
+        type: "practice",
+        category: "Praktik Git Push",
+        title: "Soal 17 — Push dan Upstream",
+        question: "Tuliskan perintah untuk mengirim branch main ke remote origin sekaligus menetapkan upstream.",
+        guidance: "Gunakan opsi -u (upstream), bukan -m. Target: origin main.",
+        referenceAnswer: "git push -u origin main",
+        validate: (input) => {
+          if (!input) return false;
+          const tokens = input.trim().split(/\s+/);
+          // git push -u origin main OR git push --set-upstream origin main
+          if (tokens.length === 5 && tokens[0] === "git" && tokens[1] === "push" && (tokens[2] === "-u" || tokens[2] === "--set-upstream") && tokens[3] === "origin" && tokens[4] === "main") {
+            return true;
+          }
+          // Alternatif urutan: git push origin main -u
+          if (tokens.length === 5 && tokens[0] === "git" && tokens[1] === "push" && tokens[2] === "origin" && tokens[3] === "main" && (tokens[4] === "-u" || tokens[4] === "--set-upstream")) {
+            return true;
+          }
+          return false;
+        }
+      },
+      {
+        id: 18,
+        type: "practice",
+        category: "Praktik Git Pull",
+        title: "Soal 18 — Pull dari Remote",
+        question: "Tuliskan perintah untuk mengambil dan mengintegrasikan perubahan branch main dari remote origin.",
+        guidance: "Sintaks: git pull <remote> <branch>",
+        referenceAnswer: "git pull origin main",
+        validate: (input) => {
+          if (!input) return false;
+          const tokens = input.trim().split(/\s+/);
+          return tokens.length === 4 && tokens[0] === "git" && tokens[1] === "pull" && tokens[2] === "origin" && tokens[3] === "main";
+        }
+      },
+      {
+        id: 19,
+        type: "practice",
+        category: "Praktik Git Merge",
+        title: "Soal 19 — Merge Branch",
+        question: "Jika sedang berada di branch main, tuliskan perintah untuk menggabungkan perubahan dari branch fitur-login ke branch yang sedang aktif.",
+        guidance: "Gabungkan branch sumber fitur-login ke branch aktif saat ini.",
+        referenceAnswer: "git merge fitur-login",
+        validate: (input) => {
+          if (!input) return false;
+          const tokens = input.trim().split(/\s+/);
+          return tokens.length === 3 && tokens[0] === "git" && tokens[1] === "merge" && tokens[2] === "fitur-login";
+        }
+      },
+      {
+        id: 20,
+        type: "practice",
+        category: "Praktik GitHub CLI",
+        title: "Soal 20 — Membuat Pull Request",
+        question: "Tuliskan perintah GitHub CLI untuk membuat Pull Request dengan judul Implementasi fitur login dan base branch main, dari branch yang sedang aktif.",
+        guidance: "Gunakan perintah gh pr create, dengan flag --base main dan --title \"Implementasi fitur login\".",
+        referenceAnswer: 'gh pr create --base main --title "Implementasi fitur login"',
+        validate: (input) => {
+          if (!input) return false;
+          const trimmed = input.trim();
+          // Variasi 1: gh pr create --base main --title "Implementasi fitur login"
+          // Variasi 2: gh pr create --title "Implementasi fitur login" --base main
+          // Variasi 3: gh pr create -B main -t "Implementasi fitur login"
+          const regex1 = /^gh\s+pr\s+create\s+(--base|-B)\s+main\s+(--title|-t)\s+["']Implementasi fitur login["']$/;
+          const regex2 = /^gh\s+pr\s+create\s+(--title|-t)\s+["']Implementasi fitur login["']\s+(--base|-B)\s+main$/;
+          return regex1.test(trimmed) || regex2.test(trimmed);
+        }
+      }
+    ];
+
+    /**
+     * APP ARCHITECTURE CONTROLLER
+     */
+    class ExamApplication {
+      constructor() {
+        this.storageKeyActiveSession = 'gh_skills_active_session_v1';
+        this.apiUrl = 'api.php';
+
+        // State session
+        this.currentStudent = null;
+        this.currentQuestionIndex = 0;
+        this.userAnswers = []; // { qId, answer, isCorrect, points }
+        this.currentDraftAnswer = '';
+        this.attemptId = null;
+        this.timerInterval = null;
+        this.questionDeadlineTimestamp = 0;
+        this.questionDurationSec = 30;
+        this.examStartTimestamp = 0;
+        this.isSubmitting = false;
+        this.isFinishing = false;
+
+        this.init();
+      }
+
+      init() {
+        document.getElementById('practiceInput').addEventListener('input', (event) => {
+          this.currentDraftAnswer = event.target.value;
+          if (this.currentStudent) this.saveActiveSession();
+        });
+
+        // Cek pemulihan sesi aktif jika halaman di-refresh
+        this.restoreActiveSession();
+      }
+
+      async apiRequest(action, method = 'GET', payload = null) {
+        const options = {
+          method,
+          headers: { 'Accept': 'application/json' }
+        };
+        if (payload !== null) {
+          options.headers['Content-Type'] = 'application/json';
+          options.body = JSON.stringify(payload);
+        }
+
+        const response = await fetch(`${this.apiUrl}?action=${encodeURIComponent(action)}`, options);
+        const data = await response.json();
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || 'Permintaan ke server gagal.');
+        }
+        return data;
+      }
+
+      showRequestError(error) {
+        console.error('Permintaan aplikasi gagal', error);
+        this.showCustomModal({
+          title: 'Koneksi Database Gagal',
+          sub: 'Periksa server lokal',
+          message: error.message || 'Tidak dapat menghubungi database. Pastikan Apache dan MySQL Laragon aktif.',
+          iconClass: 'bi bi-exclamation-triangle-fill',
+          iconBg: 'bg-danger-subtle text-danger'
+        });
+      }
+
+      navTo(viewName) {
+        // Toggle view sections
+        document.getElementById('viewHome').classList.add('d-none');
+        document.getElementById('viewExam').classList.add('d-none');
+        document.getElementById('viewResult').classList.add('d-none');
+        document.getElementById('viewLeaderboard').classList.add('d-none');
+
+        const navRestart = document.getElementById('navRestartBtn');
+
+        if (viewName === 'home') {
+          document.getElementById('viewHome').classList.remove('d-none');
+          navRestart.classList.add('d-none');
+        } else if (viewName === 'exam') {
+          document.getElementById('viewExam').classList.remove('d-none');
+          navRestart.classList.remove('d-none');
+          navRestart.classList.add('d-flex');
+        } else if (viewName === 'result') {
+          document.getElementById('viewResult').classList.remove('d-none');
+          navRestart.classList.add('d-none');
+        } else if (viewName === 'leaderboard') {
+          document.getElementById('viewLeaderboard').classList.remove('d-none');
+          navRestart.classList.add('d-none');
+          this.renderLeaderboardTable();
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      showCustomModal({ title, sub, message, iconClass, iconBg, confirmText, cancelText, onConfirm }) {
+        const modalEl = document.getElementById('customModal');
+        document.getElementById('modalTitle').textContent = title || "Informasi";
+        document.getElementById('modalSub').textContent = sub || "";
+        document.getElementById('modalMessage').textContent = message || "";
+        
+        const iconContainer = document.getElementById('modalIconContainer');
+        iconContainer.className = `p-2 rounded-circle fs-4 ${iconBg || 'bg-primary-subtle text-primary'}`;
+        iconContainer.innerHTML = `<i class="${iconClass || 'bi bi-info-circle-fill'}"></i>`;
+
+        const actionsEl = document.getElementById('modalActions');
+        actionsEl.innerHTML = '';
+
+        if (cancelText) {
+          const btnCancel = document.createElement('button');
+          btnCancel.className = 'btn btn-outline-secondary btn-sm px-3';
+          btnCancel.textContent = cancelText;
+          btnCancel.onclick = () => this.hideCustomModal();
+          actionsEl.appendChild(btnCancel);
+        }
+
+        const btnConfirm = document.createElement('button');
+        btnConfirm.className = 'btn btn-github-primary btn-sm px-4';
+        btnConfirm.textContent = confirmText || 'OK';
+        btnConfirm.onclick = () => {
+          this.hideCustomModal();
+          if (typeof onConfirm === 'function') onConfirm();
+        };
+        actionsEl.appendChild(btnConfirm);
+
+        modalEl.classList.remove('d-none');
+      }
+
+      hideCustomModal() {
+        document.getElementById('customModal').classList.add('d-none');
+      }
+
+      async handleAuthSubmit(event) {
+        event.preventDefault();
+        const nameInput = document.getElementById('inputName');
+        const nimInput = document.getElementById('inputNim');
+        const classInput = document.getElementById('inputClass');
+        const checkTerms = document.getElementById('checkTerms');
+
+        const name = nameInput.value.trim();
+        const nim = nimInput.value.trim();
+        const studentClass = classInput.value;
+
+        let isValid = true;
+
+        if (name.length < 3) {
+          nameInput.classList.add('is-invalid');
+          isValid = false;
+        } else {
+          nameInput.classList.remove('is-invalid');
+        }
+
+        if (nim.length < 5) {
+          nimInput.classList.add('is-invalid');
+          isValid = false;
+        } else {
+          nimInput.classList.remove('is-invalid');
+        }
+
+        if (!studentClass) {
+          classInput.classList.add('is-invalid');
+          isValid = false;
+        } else {
+          classInput.classList.remove('is-invalid');
+        }
+
+        if (!checkTerms.checked) {
+          this.showCustomModal({
+            title: "Pernyataan Ujian",
+            sub: "Validasi Form",
+            message: "Harap centang persetujuan aturan ujian sebelum memulai.",
+            iconClass: "bi bi-exclamation-triangle",
+            iconBg: "bg-warning-subtle text-warning"
+          });
+          return;
+        }
+
+        if (!isValid) return;
+
+        const student = { name, nim, studentClass };
+        const startButton = document.getElementById('btnStartExam');
+        startButton.disabled = true;
+        try {
+          await this.apiRequest('participant', 'POST', student);
+          this.startNewExam(student);
+        } catch (error) {
+          this.showRequestError(error);
+        } finally {
+          startButton.disabled = false;
+        }
+      }
+
+      startNewExam(student) {
+        this.currentStudent = student;
+        this.currentQuestionIndex = 0;
+        this.userAnswers = [];
+        this.currentDraftAnswer = '';
+        this.attemptId = window.crypto && typeof window.crypto.randomUUID === 'function'
+          ? window.crypto.randomUUID()
+          : `attempt-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        this.examStartTimestamp = Date.now();
+
+        // Update header UI
+        document.getElementById('examStudentName').textContent = student.name;
+        document.getElementById('examStudentNim').textContent = `NIM: ${student.nim}`;
+        document.getElementById('examBadgeClass').textContent = student.studentClass;
+
+        this.navTo('exam');
+        this.renderDotsNavigation();
+        this.loadQuestion(0);
+      }
+
+      saveActiveSession() {
+        const sessionPayload = {
+          student: this.currentStudent,
+          questionIndex: this.currentQuestionIndex,
+          userAnswers: this.userAnswers,
+          draftAnswer: this.currentDraftAnswer,
+          attemptId: this.attemptId,
+          examStartTimestamp: this.examStartTimestamp,
+          questionDeadlineTimestamp: this.questionDeadlineTimestamp
+        };
+        localStorage.setItem(this.storageKeyActiveSession, JSON.stringify(sessionPayload));
+      }
+
+      clearActiveSession() {
+        localStorage.removeItem(this.storageKeyActiveSession);
+      }
+
+      restoreActiveSession() {
+        const raw = localStorage.getItem(this.storageKeyActiveSession);
+        if (!raw) return;
+
+        try {
+          const session = JSON.parse(raw);
+          if (session && session.student && Array.isArray(session.userAnswers)) {
+            this.currentStudent = session.student;
+            this.currentQuestionIndex = session.questionIndex;
+            this.userAnswers = session.userAnswers;
+            this.currentDraftAnswer = typeof session.draftAnswer === 'string' ? session.draftAnswer : '';
+            this.attemptId = session.attemptId || `attempt-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+            this.examStartTimestamp = session.examStartTimestamp || Date.now();
+
+            // Set UI
+            document.getElementById('examStudentName').textContent = session.student.name;
+            document.getElementById('examStudentNim').textContent = `NIM: ${session.student.nim}`;
+            document.getElementById('examBadgeClass').textContent = session.student.studentClass;
+
+            this.navTo('exam');
+            this.renderDotsNavigation();
+
+            // Cek apakah deadline soal terakhir masih tersisa
+            const now = Date.now();
+            if (session.questionDeadlineTimestamp && session.questionDeadlineTimestamp > now) {
+              this.questionDeadlineTimestamp = session.questionDeadlineTimestamp;
+              this.loadQuestion(this.currentQuestionIndex, true);
+            } else {
+              // Jika deadline lewat saat tab ditutup, kunci jawaban soal tersebut sebagai kosong dan lanjut
+              if (this.currentQuestionIndex < EXAM_QUESTIONS.length) {
+                this.recordAnswerAndAdvance(this.currentDraftAnswer, false, true);
+              } else {
+                this.finishExam();
+              }
+            }
+          }
+        } catch (e) {
+          console.error("Gagal memulihkan sesi ujian", e);
+          this.clearActiveSession();
+        }
+      }
+
+      confirmResetExam() {
+        this.showCustomModal({
+          title: "Keluar dari Ujian?",
+          sub: "Peringatan Pembatalan",
+          message: "Jika Anda keluar sekarang, sesi ujian Anda akan dibatalkan dan jawaban yang telah diinput tidak akan disimpan ke Leaderboard.",
+          iconClass: "bi bi-x-octagon-fill",
+          iconBg: "bg-danger-subtle text-danger",
+          confirmText: "Ya, Keluar Ujian",
+          cancelText: "Lanjutkan Mengerjakan",
+          onConfirm: () => {
+            clearInterval(this.timerInterval);
+            this.clearActiveSession();
+            this.navTo('home');
+          }
+        });
+      }
+
+      loadQuestion(index, isResumed = false) {
+        if (index >= EXAM_QUESTIONS.length) {
+          this.finishExam();
+          return;
+        }
+
+        this.currentQuestionIndex = index;
+        this.isSubmitting = false;
+
+        const q = EXAM_QUESTIONS[index];
+
+        // Update progress badge
+        const padIndex = String(index + 1).padStart(2, '0');
+        document.getElementById('examProgressCount').textContent = `Soal ${padIndex} dari 20`;
+        document.getElementById('navIndicatorSummary').textContent = `${index + 1} / 20`;
+        document.getElementById('badgeCategory').textContent = `Kategori: ${q.category}`;
+        document.getElementById('questionTitle').textContent = q.title;
+        document.getElementById('questionDesc').innerHTML = `<strong>Instruksi:</strong> ${q.question}<br><span class="text-secondary">${q.guidance || ''}</span>`;
+
+        // Update Navigation Dots
+        this.updateDotsUI();
+
+        // Setup Options vs Practice Console
+        const areaTheory = document.getElementById('areaTheory');
+        const areaPractice = document.getElementById('areaPractice');
+
+        if (q.type === 'theory') {
+          areaPractice.classList.add('d-none');
+          areaTheory.classList.remove('d-none');
+          this.renderTheoryOptions(q);
+          if (isResumed && this.currentDraftAnswer) {
+            this.selectTheoryOption(this.currentDraftAnswer);
+          }
+        } else {
+          areaTheory.classList.add('d-none');
+          areaPractice.classList.remove('d-none');
+          const pInput = document.getElementById('practiceInput');
+          pInput.value = isResumed ? this.currentDraftAnswer : '';
+          this.currentDraftAnswer = pInput.value;
+          setTimeout(() => pInput.focus(), 100);
+        }
+
+        // Setup Timestamp Deadline
+        if (!isResumed) {
+          this.questionDeadlineTimestamp = Date.now() + (this.questionDurationSec * 1000);
+          this.saveActiveSession();
+        }
+
+        this.startTimer();
+      }
+
+      renderTheoryOptions(question) {
+        const listEl = document.getElementById('theoryOptionsList');
+        listEl.innerHTML = '';
+
+        question.options.forEach((opt) => {
+          const item = document.createElement('div');
+          item.className = 'option-card';
+          item.setAttribute('data-key', opt.key);
+          item.onclick = () => this.selectTheoryOption(opt.key);
+
+          item.innerHTML = `
+            <div class="badge-opt">${opt.key}</div>
+            <div class="text-dark small pt-1 fw-medium" style="line-height: 1.4;">${opt.text}</div>
+          `;
+          listEl.appendChild(item);
+        });
+      }
+
+      selectTheoryOption(key) {
+        const cards = document.querySelectorAll('.option-card');
+        cards.forEach(c => {
+          if (c.getAttribute('data-key') === key) {
+            c.classList.add('selected');
+          } else {
+            c.classList.remove('selected');
+          }
+        });
+        this.currentDraftAnswer = key;
+        this.saveActiveSession();
+      }
+
+      clearTerminal() {
+        const input = document.getElementById('practiceInput');
+        input.value = '';
+        input.focus();
+      }
+
+      startTimer() {
+        if (this.timerInterval) clearInterval(this.timerInterval);
+
+        const timerEl = document.getElementById('timerSeconds');
+        const timerContainer = document.getElementById('timerContainer');
+        const progressBar = document.getElementById('questionProgressBar');
+
+        const updateTick = () => {
+          const now = Date.now();
+          const remainingMs = Math.max(0, this.questionDeadlineTimestamp - now);
+          const remainingSec = Math.ceil(remainingMs / 1000);
+
+          // Update teks detik (anti-negatif)
+          timerEl.textContent = String(remainingSec).padStart(2, '0');
+
+          // Hitung persentase progress bar
+          const percent = (remainingMs / (this.questionDurationSec * 1000)) * 100;
+          progressBar.style.width = `${Math.max(0, Math.min(100, percent))}%`;
+
+          // Visual warning
+          if (remainingSec <= 5) {
+            timerContainer.className = 'timer-badge timer-danger';
+            progressBar.className = 'progress-bar bg-danger';
+          } else if (remainingSec <= 10) {
+            timerContainer.className = 'timer-badge timer-warning';
+            progressBar.className = 'progress-bar bg-warning';
+          } else {
+            timerContainer.className = 'timer-badge';
+            progressBar.className = 'progress-bar progress-bar-striped progress-bar-animated bg-primary';
+          }
+
+          // Timeout check
+          if (remainingMs <= 0) {
+            clearInterval(this.timerInterval);
+            this.handleTimeout();
+          }
+        };
+
+        updateTick();
+        this.timerInterval = setInterval(updateTick, 250);
+      }
+
+      handleTimeout() {
+        if (this.isSubmitting) return;
+        this.isSubmitting = true;
+
+        // Ambil apapun yang sempat diisi atau anggap kosong
+        const currentAnswer = this.getCurrentInputtedAnswer();
+        this.recordAnswerAndAdvance(currentAnswer, false, true);
+      }
+
+      getCurrentInputtedAnswer() {
+        const q = EXAM_QUESTIONS[this.currentQuestionIndex];
+        if (q.type === 'theory') {
+          const selected = document.querySelector('.option-card.selected');
+          return selected ? selected.getAttribute('data-key') : "";
+        } else {
+          const pInput = document.getElementById('practiceInput');
+          return pInput ? pInput.value.trim() : "";
+        }
+      }
+
+      submitCurrentAnswer(isSkipped = false) {
+        if (this.isSubmitting) return;
+        this.isSubmitting = true;
+        clearInterval(this.timerInterval);
+
+        let answer = isSkipped ? "" : this.getCurrentInputtedAnswer();
+        this.recordAnswerAndAdvance(answer, isSkipped, false);
+      }
+
+      recordAnswerAndAdvance(rawAnswer, isSkipped, isTimeout) {
+        const q = EXAM_QUESTIONS[this.currentQuestionIndex];
+        let isCorrect = false;
+        let points = 0;
+
+        if (!isSkipped && rawAnswer) {
+          if (q.type === 'theory') {
+            // Validator Teori Pilihan Ganda
+            isCorrect = (rawAnswer.trim().toUpperCase() === q.correctKey.toUpperCase());
+          } else {
+            // Validator Praktik Terminal Mandiri
+            isCorrect = q.validate(rawAnswer);
+          }
+        }
+
+        if (isCorrect) {
+          points = 5;
+        }
+
+        this.userAnswers.push({
+          questionId: q.id,
+          questionTitle: q.title,
+          type: q.type,
+          studentAnswer: rawAnswer || "",
+          correctKeyOrRef: q.type === 'theory' ? q.correctKey : q.referenceAnswer,
+          isCorrect: isCorrect,
+          points: points,
+          isTimeout: !!isTimeout
+        });
+
+        // Pindah ke soal berikutnya
+        const nextIdx = this.currentQuestionIndex + 1;
+        this.currentDraftAnswer = '';
+        this.currentQuestionIndex = nextIdx;
+        this.saveActiveSession();
+        if (nextIdx < EXAM_QUESTIONS.length) {
+          this.loadQuestion(nextIdx);
+        } else {
+          this.finishExam();
+        }
+      }
+
+      renderDotsNavigation() {
+        const container = document.getElementById('questionDotsContainer');
+        container.innerHTML = '';
+
+        for (let i = 0; i < 20; i++) {
+          const dot = document.createElement('div');
+          dot.id = `dotNav-${i}`;
+          dot.className = 'border rounded text-center small font-mono py-1';
+          dot.style.flex = '1 0 8%';
+          dot.style.minWidth = '28px';
+          dot.style.fontSize = '0.75rem';
+          dot.textContent = String(i + 1).padStart(2, '0');
+          container.appendChild(dot);
+        }
+      }
+
+      updateDotsUI() {
+        for (let i = 0; i < 20; i++) {
+          const dot = document.getElementById(`dotNav-${i}`);
+          if (!dot) continue;
+
+          if (i < this.userAnswers.length) {
+            // Sudah dijawab
+            dot.className = 'border rounded text-center small font-mono py-1 bg-secondary-subtle text-secondary fw-bold';
+          } else if (i === this.currentQuestionIndex) {
+            // Aktif saat ini
+            dot.className = 'border border-primary rounded text-center small font-mono py-1 bg-primary text-white fw-bold';
+          } else {
+            // Belum
+            dot.className = 'border rounded text-center small font-mono py-1 bg-white text-muted';
+          }
+        }
+      }
+
+      async finishExam() {
+        if (this.isFinishing) return;
+        this.isFinishing = true;
+        clearInterval(this.timerInterval);
+
+        const totalScore = this.userAnswers.reduce((acc, cur) => acc + cur.points, 0);
+        const totalCorrect = this.userAnswers.filter(a => a.isCorrect).length;
+        const totalWrong = 20 - totalCorrect;
+        
+        const theoryCorrect = this.userAnswers.filter(a => a.type === 'theory' && a.isCorrect).length;
+        const practiceCorrect = this.userAnswers.filter(a => a.type === 'practice' && a.isCorrect).length;
+
+        const totalElapsedSec = Math.round((Date.now() - this.examStartTimestamp) / 1000);
+
+        // Kategori predikat
+        let gradeCategory = "Perlu Belajar Lagi";
+        let gradeBadgeClass = "bg-danger";
+
+        if (totalScore >= 80) {
+          gradeCategory = "Sangat Baik";
+          gradeBadgeClass = "bg-success";
+        } else if (totalScore >= 70) {
+          gradeCategory = "Baik";
+          gradeBadgeClass = "bg-primary";
+        } else if (totalScore >= 60) {
+          gradeCategory = "Cukup";
+          gradeBadgeClass = "bg-warning text-dark";
+        }
+
+        // Tampilkan pada Hasil Ujian
+        document.getElementById('resultStudentMeta').textContent = `${this.currentStudent.name} (NIM: ${this.currentStudent.nim}) — Kelas ${this.currentStudent.studentClass}`;
+        document.getElementById('resultFinalScore').textContent = totalScore;
+        
+        const gradeBadge = document.getElementById('resultGradeBadge');
+        gradeBadge.className = `badge rounded-pill px-3 py-1 mt-1 ${gradeBadgeClass}`;
+        gradeBadge.textContent = gradeCategory;
+
+        document.getElementById('resCorrectCount').textContent = `${totalCorrect} (${totalScore} Pts)`;
+        document.getElementById('resWrongCount').textContent = totalWrong;
+        document.getElementById('resTheoryRatio').textContent = `${theoryCorrect}/10`;
+        document.getElementById('resPracticeRatio').textContent = `${practiceCorrect}/10`;
+
+        // Simpan ke Leaderboard (Cegah duplikasi ID dengan crypto UUID)
+        const result = {
+          attemptId: this.attemptId,
+          student: this.currentStudent,
+          score: totalScore,
+          totalCorrect,
+          theoryCorrect,
+          practiceCorrect,
+          totalQuestions: EXAM_QUESTIONS.length,
+          unansweredCount: this.userAnswers.filter(answer => !answer.studentAnswer).length,
+          completionTimeSeconds: totalElapsedSec,
+          details: this.userAnswers
+        };
+
+        try {
+          await this.apiRequest('result', 'POST', result);
+        } catch (error) {
+          this.isFinishing = false;
+          this.showRequestError(error);
+          return;
+        }
+
+        this.clearActiveSession();
+        // Render tabel review
+        this.renderReviewTable();
+
+        // Beralih ke View Result
+        this.navTo('result');
+      }
+
+      renderReviewTable() {
+        const tbody = document.getElementById('reviewTableBody');
+        tbody.innerHTML = '';
+
+        this.userAnswers.forEach((ans, idx) => {
+          const tr = document.createElement('tr');
+          const isCorrect = ans.isCorrect;
+          
+          tr.innerHTML = `
+            <td class="text-center font-mono">${idx + 1}</td>
+            <td><span class="badge ${ans.type === 'theory' ? 'bg-secondary' : 'bg-dark'}">${ans.type.toUpperCase()}</span></td>
+            <td>
+              <div class="fw-semibold text-dark">${ans.questionTitle}</div>
+              <div class="text-muted small mt-1">Kunci Acuan: <code class="text-dark bg-light px-1 rounded font-mono">${this.escapeHtml(ans.correctKeyOrRef)}</code></div>
+            </td>
+            <td>
+              <code class="font-mono ${isCorrect ? 'text-success' : 'text-danger'} bg-light p-1 rounded d-block" style="white-space: pre-wrap;">${this.escapeHtml(ans.studentAnswer || '(Kosong / Waktu Habis)')}</code>
+            </td>
+            <td class="text-center">
+              ${isCorrect ? '<span class="badge bg-success"><i class="bi bi-check-lg"></i> Benar</span>' : '<span class="badge bg-danger"><i class="bi bi-x-lg"></i> Salah</span>'}
+            </td>
+            <td class="text-center fw-bold ${isCorrect ? 'text-success' : 'text-danger'} font-mono">
+              +${ans.points}
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      toggleReviewTable() {
+        const reviewEl = document.getElementById('reviewContainer');
+        const btnLabel = document.getElementById('btnReviewLabel');
+        if (reviewEl.classList.contains('d-none')) {
+          reviewEl.classList.remove('d-none');
+          btnLabel.textContent = "Sembunyikan Review";
+          reviewEl.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          reviewEl.classList.add('d-none');
+          btnLabel.textContent = "Lihat Review Jawaban";
+        }
+      }
+
+      async renderLeaderboardTable() {
+        let rawData;
+        try {
+          const response = await this.apiRequest('leaderboard');
+          rawData = response.data;
+        } catch (error) {
+          this.showRequestError(error);
+          return;
+        }
+
+        // Ambil filter
+        const searchQuery = (document.getElementById('filterSearch').value || '').toLowerCase();
+        const classFilter = document.getElementById('filterClass').value;
+        const dateFilter = document.getElementById('filterDate').value;
+
+        // Sorting: Nilai tertinggi -> Waktu penyelesaian terpendek jika seri
+        let filtered = rawData.sort((a, b) => {
+          if (b.score !== a.score) {
+            return b.score - a.score;
+          }
+          return (a.completionTimeSeconds || 0) - (b.completionTimeSeconds || 0);
+        });
+
+        // Filter search (Nama / NIM)
+        if (searchQuery) {
+          filtered = filtered.filter(item => 
+            item.name.toLowerCase().includes(searchQuery) || 
+            item.nim.toLowerCase().includes(searchQuery)
+          );
+        }
+
+        // Filter Kelas
+        if (classFilter && classFilter !== 'ALL') {
+          filtered = filtered.filter(item => item.studentClass === classFilter);
+        }
+
+        // Filter Tanggal
+        if (dateFilter) {
+          filtered = filtered.filter(item => item.date === dateFilter);
+        }
+
+        // Render Statistik
+        this.updateLeaderboardStats(rawData);
+
+        // Render Top 3 Podium
+        this.renderPodium(filtered.slice(0, 3));
+
+        // Render Table Body
+        const tbody = document.getElementById('leaderboardTbody');
+        const emptyState = document.getElementById('leaderboardEmptyState');
+        tbody.innerHTML = '';
+
+        if (filtered.length === 0) {
+          emptyState.classList.remove('d-none');
+          return;
+        } else {
+          emptyState.classList.add('d-none');
+        }
+
+        filtered.forEach((row, idx) => {
+          const tr = document.createElement('tr');
+          const rankNum = idx + 1;
+          
+          let rankBadge = `<span class="fw-bold text-muted">${rankNum}</span>`;
+          if (rankNum === 1) rankBadge = `<span class="badge-podium gold-rank"><i class="bi bi-trophy-fill"></i></span>`;
+          else if (rankNum === 2) rankBadge = `<span class="badge-podium silver-rank">2</span>`;
+          else if (rankNum === 3) rankBadge = `<span class="badge-podium bronze-rank">3</span>`;
+
+          const min = Math.floor((row.completionTimeSeconds || 0) / 60);
+          const sec = (row.completionTimeSeconds || 0) % 60;
+          const durationStr = `${min}m ${sec}s`;
+
+          tr.innerHTML = `
+            <td class="text-center">${rankBadge}</td>
+            <td>
+              <div class="fw-bold text-dark">${this.escapeHtml(row.name)}</div>
+            </td>
+            <td class="font-mono text-muted small">${this.escapeHtml(row.nim)}</td>
+            <td><span class="badge bg-light text-dark border font-mono">${this.escapeHtml(row.studentClass)}</span></td>
+            <td class="text-center font-mono small">${row.theoryCorrect}/10</td>
+            <td class="text-center font-mono small">${row.practiceCorrect}/10</td>
+            <td class="text-center font-mono small fw-bold">${row.totalCorrect}/20</td>
+            <td class="text-center text-muted font-mono small">${durationStr}</td>
+            <td class="text-center text-muted small">${row.date || '-'}</td>
+            <td class="text-end pe-4">
+              <span class="fs-6 fw-bold font-mono ${row.score >= 70 ? 'text-success' : 'text-danger'}">${row.score}</span>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      renderPodium(top3) {
+        const container = document.getElementById('topPodiumContainer');
+        container.innerHTML = '';
+
+        if (!top3 || top3.length === 0) return;
+
+        const colors = [
+          { border: '#ffd700', bg: '#fffdf0', text: '#b28900', label: 'Juara 1' },
+          { border: '#ced4da', bg: '#f8f9fa', text: '#6c757d', label: 'Juara 2' },
+          { border: '#cd7f32', bg: '#fcf6f2', text: '#945318', label: 'Juara 3' }
+        ];
+
+        top3.forEach((item, index) => {
+          const col = document.createElement('div');
+          col.className = 'col-md-4';
+          const style = colors[index];
+
+          col.innerHTML = `
+            <div class="card card-custom p-3 text-center" style="border: 2px solid ${style.border}; background: ${style.bg};">
+              <div class="d-inline-block px-3 py-1 rounded-pill small fw-bold mb-2" style="background: ${style.border}; color: #000;">
+                <i class="bi bi-award-fill"></i> ${style.label}
+              </div>
+              <h5 class="fw-bold text-dark mb-1 text-truncate">${this.escapeHtml(item.name)}</h5>
+              <div class="small text-muted font-mono mb-2">${this.escapeHtml(item.nim)} — ${this.escapeHtml(item.studentClass)}</div>
+              <div class="display-6 fw-bold font-mono" style="color: ${style.text};">${item.score}</div>
+              <div class="small text-muted font-mono">Total Benar: ${item.totalCorrect} / 20 Soal</div>
+            </div>
+          `;
+          container.appendChild(col);
+        });
+      }
+
+      updateLeaderboardStats(data) {
+        const total = data.length;
+        if (total === 0) {
+          document.getElementById('statTotalStudents').textContent = '0';
+          document.getElementById('statAvgScore').textContent = '0';
+          document.getElementById('statMaxScore').textContent = '0';
+          document.getElementById('statMinScore').textContent = '0';
+          document.getElementById('statPerfectCount').textContent = '0';
+          document.getElementById('statPassedRatio').textContent = '0%';
+          return;
+        }
+
+        const scores = data.map(d => d.score);
+        const sum = scores.reduce((a, b) => a + b, 0);
+        const avg = (sum / total).toFixed(1);
+        const max = Math.max(...scores);
+        const min = Math.min(...scores);
+        const perfect = scores.filter(s => s === 100).length;
+        const passed = scores.filter(s => s >= 70).length;
+        const passedPct = Math.round((passed / total) * 100);
+
+        document.getElementById('statTotalStudents').textContent = total;
+        document.getElementById('statAvgScore').textContent = avg;
+        document.getElementById('statMaxScore').textContent = max;
+        document.getElementById('statMinScore').textContent = min;
+        document.getElementById('statPerfectCount').textContent = perfect;
+        document.getElementById('statPassedRatio').textContent = `${passedPct}%`;
+      }
+
+      confirmClearLeaderboard() {
+        this.showCustomModal({
+          title: "Hapus Riwayat Leaderboard?",
+          sub: "Tindakan Permanen",
+          message: "Seluruh data riwayat hasil ujian mahasiswa di browser ini akan dihapus. Anda dapat mengekspor file Excel terlebih dahulu jika diperlukan.",
+          iconClass: "bi bi-trash-fill",
+          iconBg: "bg-danger-subtle text-danger",
+          confirmText: "Ya, Hapus Semua",
+          cancelText: "Batal",
+          onConfirm: async () => {
+            try {
+              await this.apiRequest('clear_leaderboard', 'POST', {});
+              await this.renderLeaderboardTable();
+            } catch (error) {
+              this.showRequestError(error);
+            }
+          }
+        });
+      }
+
+      async exportLeaderboardToExcel() {
+        let rawData;
+        try {
+          const response = await this.apiRequest('leaderboard');
+          rawData = response.data;
+        } catch (error) {
+          this.showRequestError(error);
+          return;
+        }
+
+        if (rawData.length === 0) {
+          this.showCustomModal({
+            title: "Data Kosong",
+            sub: "Ekspor Gagal",
+            message: "Tidak ada data mahasiswa untuk diekspor ke Excel.",
+            iconClass: "bi bi-info-circle",
+            iconBg: "bg-warning-subtle text-warning"
+          });
+          return;
+        }
+
+        // Urutkan data berdasarkan Nilai Tertinggi -> Waktu Tercepat
+        const sortedData = [...rawData].sort((a, b) => {
+          if (b.score !== a.score) return b.score - a.score;
+          return (a.completionTimeSeconds || 0) - (b.completionTimeSeconds || 0);
+        });
+
+        // SHEET 1: LEADERBOARD
+        const sheet1Data = [
+          ["PERINGKAT", "NAMA MAHASISWA", "NIM", "KELAS", "NILAI AKHIR", "BENAR TEORI", "BENAR PRAKTIK", "TOTAL BENAR", "TOTAL SALAH", "TIDAK DIJAWAB", "TANGGAL UJIAN", "WAKTU PENYELESAIAN (DETIK)"]
+        ];
+
+        sortedData.forEach((item, index) => {
+          const unanswered = item.unansweredCount || 0;
+          const totalWrong = item.totalQuestions - item.totalCorrect - unanswered;
+          sheet1Data.push([
+            index + 1,
+            item.name,
+            item.nim,
+            item.studentClass,
+            item.score,
+            item.theoryCorrect,
+            item.practiceCorrect,
+            item.totalCorrect,
+            totalWrong,
+            unanswered,
+            item.date || "-",
+            item.completionTimeSeconds || 0
+          ]);
+        });
+
+        // SHEET 2: REKAPITULASI
+        const totalPeserta = sortedData.length;
+        const allScores = sortedData.map(s => s.score);
+        const avgScore = (allScores.reduce((a, b) => a + b, 0) / totalPeserta).toFixed(2);
+        const maxScore = Math.max(...allScores);
+        const minScore = Math.min(...allScores);
+        const perfectScores = allScores.filter(s => s === 100).length;
+
+        // Distribusi Kategori
+        const catSangatBaik = allScores.filter(s => s >= 80).length;
+        const catBaik = allScores.filter(s => s >= 70 && s < 80).length;
+        const catCukup = allScores.filter(s => s >= 60 && s < 70).length;
+        const catKurang = allScores.filter(s => s < 60).length;
+
+        const sheet2Data = [
+          ["METRIK REKAPITULASI", "NILAI"],
+          ["Mata Kuliah", "Pemrograman Web II — Git & GitHub"],
+          ["Jumlah Peserta Ujian", totalPeserta],
+          ["Nilai Rata-rata", Number(avgScore)],
+          ["Nilai Tertinggi", maxScore],
+          ["Nilai Terendah", minScore],
+          ["Jumlah Nilai Sempurna (100)", perfectScores],
+          ["", ""],
+          ["DISTRIBUSI KATEGORI HASIL", "JUMLAH MAHASISWA"],
+          ["80 - 100 (Sangat Baik)", catSangatBaik],
+          ["70 - 79 (Baik)", catBaik],
+          ["60 - 69 (Cukup)", catCukup],
+          ["0 - 59 (Perlu Belajar Lagi)", catKurang]
+        ];
+
+        // SHEET 3: DETAIL JAWABAN
+        const sheet3Data = [
+          ["NAMA MAHASISWA", "NIM", "KELAS", "NOMOR SOAL", "JENIS SOAL", "JAWABAN MAHASISWA", "STATUS JAWABAN", "POIN"]
+        ];
+
+        sortedData.forEach(item => {
+          if (item.details && Array.isArray(item.details)) {
+            item.details.forEach((det, qIdx) => {
+              sheet3Data.push([
+                item.name,
+                item.nim,
+                item.studentClass,
+                qIdx + 1,
+                det.type.toUpperCase(),
+                det.studentAnswer,
+                det.isCorrect ? "BENAR" : "SALAH",
+                det.points
+              ]);
+            });
+          } else {
+            // Placeholder jika sesi seed awal belum memiliki rincian detail 20 soal
+            sheet3Data.push([
+              item.name,
+              item.nim,
+              item.studentClass,
+              "1 - 20",
+              "SUMMARY",
+              `Benar: ${item.totalCorrect}/20`,
+              item.score >= 70 ? "LULUS" : "REMIDI",
+              item.score
+            ]);
+          }
+        });
+
+        // Buat Workbook SheetJS
+        const wb = XLSX.utils.book_new();
+        const wsLeaderboard = XLSX.utils.aoa_to_sheet(sheet1Data);
+        const wsRekap = XLSX.utils.aoa_to_sheet(sheet2Data);
+        const wsDetails = XLSX.utils.aoa_to_sheet(sheet3Data);
+
+        XLSX.utils.book_append_sheet(wb, wsLeaderboard, "Leaderboard");
+        XLSX.utils.book_append_sheet(wb, wsRekap, "Rekapitulasi");
+        XLSX.utils.book_append_sheet(wb, wsDetails, "Detail Jawaban");
+
+        // Format nama file: Leaderboard_Pemrograman_Web_II_Git_GitHub_YYYY-MM-DD.xlsx
+        const today = new Date();
+        const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        const fileName = `Leaderboard_Pemrograman_Web_II_Git_GitHub_${todayStr}.xlsx`;
+
+        // Unduh File Excel
+        XLSX.writeFile(wb, fileName);
+      }
+
+      escapeHtml(str) {
+        if (!str) return "";
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+    }
+
+    // Inisialisasi Aplikasi Saat Window Load
+    let app;
+    window.addEventListener('load', () => {
+      app = new ExamApplication();
+    });
+  </script>
+</body>
+</html>
