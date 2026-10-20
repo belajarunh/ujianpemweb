@@ -27,3 +27,29 @@ CREATE TABLE IF NOT EXISTS exam_results (
     CONSTRAINT fk_results_student FOREIGN KEY (student_nim)
         REFERENCES students (nim) ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS exam_attempts (
+    attempt_id CHAR(48) NOT NULL PRIMARY KEY,
+    student_nim VARCHAR(30) NOT NULL,
+    current_question TINYINT UNSIGNED NOT NULL DEFAULT 1,
+    deadline_epoch BIGINT UNSIGNED NOT NULL,
+    started_epoch BIGINT UNSIGNED NOT NULL,
+    completed_epoch BIGINT UNSIGNED NULL,
+    status ENUM('active', 'completed', 'cancelled') NOT NULL DEFAULT 'active',
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_attempts_status (status),
+    CONSTRAINT fk_attempts_student FOREIGN KEY (student_nim)
+        REFERENCES students (nim) ON UPDATE CASCADE ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS exam_answers (
+    attempt_id CHAR(48) NOT NULL,
+    question_id TINYINT UNSIGNED NOT NULL,
+    student_answer TEXT NOT NULL,
+    is_correct TINYINT(1) NOT NULL DEFAULT 0,
+    is_timeout TINYINT(1) NOT NULL DEFAULT 0,
+    answered_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (attempt_id, question_id),
+    CONSTRAINT fk_answers_attempt FOREIGN KEY (attempt_id)
+        REFERENCES exam_attempts (attempt_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

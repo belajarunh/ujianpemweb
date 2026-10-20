@@ -317,6 +317,425 @@
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    :root {
+      --navy-900: #252522;
+      --navy-800: #30302d;
+      --navy-700: #464640;
+      --navy-border: #e8e4d7;
+      --accent-blue: #4d4c45;
+      --accent-blue-hover: #33332f;
+      --accent-green: #f6d65b;
+      --accent-green-hover: #eccb48;
+      --accent-red: #c65a4b;
+      --accent-orange: #d1a92f;
+      --text-main: #282824;
+      --text-muted: #77776f;
+      --bg-body: #f3f1e9;
+      --card-bg: #fffefa;
+      --bs-primary: #494941;
+      --bs-primary-rgb: 73, 73, 65;
+      --bs-success: #d5b538;
+      --bs-success-rgb: 213, 181, 56;
+      --bs-warning: #f6d65b;
+      --bs-warning-rgb: 246, 214, 91;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse at 92% 8%, rgba(255, 239, 173, 0.62), transparent 30rem),
+        #f3f1e9;
+      color: var(--text-main);
+      letter-spacing: -0.015em;
+    }
+
+    .navbar {
+      background: rgba(255, 254, 250, 0.84) !important;
+      border: 1px solid rgba(255, 255, 255, 0.88) !important;
+      border-radius: 999px;
+      box-shadow: 0 8px 28px rgba(67, 63, 45, 0.08);
+      margin: 14px auto 0;
+      max-width: 1320px;
+      width: calc(100% - 32px);
+      backdrop-filter: blur(16px);
+    }
+
+    .navbar > .container {
+      max-width: 1280px;
+      min-height: 52px;
+    }
+
+    .navbar-brand {
+      margin-right: 1rem;
+    }
+
+    .nav-dashboard-links {
+      align-items: center;
+      gap: 0.3rem;
+      padding: 5px;
+      margin: 0 auto;
+      border-radius: 999px;
+      background: #f4f2ea;
+    }
+
+    .nav-dashboard-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.62rem 1rem;
+      border-radius: 999px;
+      color: #65645c;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .nav-dashboard-links a:first-child,
+    .nav-dashboard-links a:hover {
+      background: #fffefa;
+      color: #292923;
+      box-shadow: 0 2px 8px rgba(67, 63, 45, 0.07);
+    }
+
+    .nav-dashboard-links a i {
+      color: #b49a31;
+    }
+
+    .brand-logo-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: #2e2e2a;
+      box-shadow: none;
+    }
+
+    .brand-logo-badge .bi-git {
+      color: #f6d65b !important;
+    }
+
+    .navbar .btn {
+      border-radius: 999px;
+    }
+
+    main.container {
+      max-width: 1280px;
+      padding-right: clamp(14px, 3vw, 36px);
+      padding-left: clamp(14px, 3vw, 36px);
+      margin-top: 1.6rem !important;
+      margin-bottom: 2rem !important;
+    }
+
+    .card-custom {
+      background: rgba(255, 254, 250, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 22px;
+      box-shadow: 0 10px 32px rgba(78, 73, 53, 0.075);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #viewHome > .row > .col-lg-10 > .card-custom:first-child {
+      padding: clamp(1.4rem, 4vw, 3.4rem) !important;
+      background: linear-gradient(118deg, #fffefa 10%, #f9f6e9 100%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.92) !important;
+      border-radius: 28px;
+      box-shadow: 0 18px 50px rgba(82, 76, 55, 0.09);
+    }
+
+    #viewHome h1 {
+      max-width: 620px;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.06;
+      letter-spacing: -0.065em;
+      font-weight: 600 !important;
+    }
+
+    #viewHome .lead {
+      max-width: 570px;
+      line-height: 1.65;
+    }
+
+    #viewHome .badge.rounded-pill {
+      background: #f7e9a8 !important;
+      border-color: #f1e09b !important;
+      color: #5b5230 !important;
+      font-weight: 600;
+    }
+
+    #viewHome .row.g-2.mb-4 > [class*="col-"] > .p-2 {
+      min-height: 86px;
+      border: 1px solid #ebe7d9 !important;
+      border-radius: 16px !important;
+      padding: 14px !important;
+      background: rgba(255, 255, 255, 0.72) !important;
+    }
+
+    #viewHome .row.g-2.mb-4 .fw-bold {
+      font-size: 1.55rem !important;
+    }
+
+    #viewHome .row.g-2.mb-4 .text-primary,
+    #viewHome .row.g-2.mb-4 .text-success,
+    #viewHome .row.g-2.mb-4 .text-warning {
+      color: #c4a52f !important;
+    }
+
+    .btn-github-primary {
+      color: #2d2b22;
+      border-color: #edd052;
+      border-radius: 999px;
+      padding: 0.72rem 1.4rem;
+      box-shadow: 0 5px 12px rgba(205, 174, 57, 0.2);
+    }
+
+    .btn-github-primary:hover,
+    .btn-github-primary:focus-visible {
+      color: #28271f;
+      border-color: #e6c63f;
+      box-shadow: 0 8px 18px rgba(205, 174, 57, 0.25);
+    }
+
+    .btn-outline-custom,
+    .btn-outline-secondary,
+    .btn-outline-danger,
+    .btn-success {
+      border-radius: 999px;
+    }
+
+    .btn-outline-custom {
+      border-color: #e4e0d4;
+      background: rgba(255, 255, 255, 0.82);
+      color: #393932;
+    }
+
+    .btn-outline-custom:hover {
+      background: #f5f1e4;
+      border-color: #d8d0b8;
+    }
+
+    .terminal-window {
+      border: 0;
+      border-radius: 20px;
+      box-shadow: 0 18px 34px rgba(35, 35, 31, 0.19);
+    }
+
+    .terminal-header {
+      padding: 10px 16px;
+    }
+
+    .terminal-window .text-muted {
+      color: #a4a9b1 !important;
+    }
+
+    #identitySection {
+      border-radius: 22px;
+      padding: clamp(1.2rem, 2.7vw, 2rem) !important;
+    }
+
+    #identitySection .input-group-text,
+    #identitySection .form-control,
+    #identitySection .form-select {
+      border-color: #e6e2d7;
+      border-radius: 12px;
+      min-height: 46px;
+    }
+
+    #identitySection .input-group .input-group-text {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    #identitySection .input-group .form-control {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    #identitySection .bg-light {
+      background: #f8f6ef !important;
+      border-color: #ebe7d9 !important;
+      border-radius: 14px !important;
+    }
+
+    #viewExam .card-custom,
+    #viewResult .card-custom,
+    #viewLeaderboard .card-custom {
+      border-radius: 20px;
+    }
+
+    #examBadgeClass,
+    #badgeCategory {
+      background: #f5e9b3 !important;
+      color: #62572c !important;
+      border: 0 !important;
+    }
+
+    #timerContainer {
+      background: #fff4c8;
+      border: 1px solid #efdf9b;
+      color: #746022;
+      border-radius: 999px;
+      min-width: 88px;
+      justify-content: center;
+    }
+
+    .timer-warning {
+      background: #ffe99a !important;
+      border-color: #e9c84c !important;
+      color: #6d5410 !important;
+    }
+
+    .timer-danger {
+      background: #fde1d8 !important;
+      border-color: #e8a596 !important;
+      color: #ad4437 !important;
+    }
+
+    #viewExam .progress {
+      border-radius: 999px;
+      background: #eeeadd;
+    }
+
+    #questionProgressBar {
+      background-color: #efd04e !important;
+      border-radius: 999px;
+    }
+
+    .option-card {
+      border: 1px solid #e8e4d8;
+      border-radius: 15px;
+      padding: 1rem 1.1rem;
+      background: #fffefa;
+    }
+
+    .option-card:hover {
+      border-color: #d7bf59;
+      background: #fffbee;
+    }
+
+    .option-card.selected {
+      border-color: #d9bd48;
+      background: #fff6d4;
+      box-shadow: 0 0 0 3px rgba(239, 208, 78, 0.13);
+    }
+
+    .option-card.selected .badge-opt {
+      background: #efd04e;
+      color: #3b3729;
+    }
+
+    .metric-box {
+      background: #f8f6ef;
+      border-color: #ebe7da;
+      border-radius: 16px;
+    }
+
+    .metric-value {
+      color: #34342f;
+    }
+
+    #resultFinalScore {
+      color: #b39a2d !important;
+    }
+
+    #viewResult .col-lg-9 > .card-custom {
+      background: linear-gradient(135deg, #fffefa, #faf4dc) !important;
+      border-radius: 26px !important;
+    }
+
+    #viewLeaderboard .table {
+      --bs-table-hover-bg: #fbf7e9;
+      --bs-table-bg: transparent;
+    }
+
+    #viewLeaderboard .table thead th {
+      background: #f7f5ed;
+      border-bottom-color: #ebe7d9;
+      color: #77766e;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    #viewLeaderboard .table td {
+      border-color: #efede5;
+    }
+
+    #viewLeaderboard .card-custom.p-0 {
+      border-radius: 18px;
+    }
+
+    #filterSearch,
+    #filterClass,
+    #filterDate {
+      min-height: 44px;
+      border-color: #e6e2d7;
+      border-radius: 12px;
+    }
+
+    #filterSearch {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    footer {
+      background: rgba(255, 254, 250, 0.68) !important;
+      border-color: #e7e3d8 !important;
+    }
+
+    @media (max-width: 767.98px) {
+      .navbar {
+        border-radius: 18px;
+        width: calc(100% - 20px);
+        margin-top: 10px;
+      }
+
+      .navbar > .container {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .brand-logo-badge {
+        width: 36px;
+        height: 36px;
+      }
+
+      .navbar-brand .fs-5 {
+        font-size: 1rem !important;
+      }
+
+      main.container {
+        padding-right: 12px;
+        padding-left: 12px;
+        margin-top: 1rem !important;
+      }
+
+      #viewHome > .row > .col-lg-10 > .card-custom:first-child {
+        border-radius: 22px;
+      }
+
+      #viewHome h1 {
+        font-size: clamp(2.2rem, 10vw, 3.2rem);
+      }
+
+      #viewHome .terminal-window {
+        margin-top: 0.5rem;
+      }
+
+      #viewResult .d-flex.justify-content-center {
+        flex-direction: column;
+      }
+
+      #viewResult .d-flex.justify-content-center .btn {
+        justify-content: center;
+      }
+
+      #viewLeaderboard > .row > .col-lg-11 > .d-flex {
+        align-items: stretch !important;
+      }
+
+      #viewLeaderboard > .row > .col-lg-11 > .d-flex > .d-flex {
+        flex-wrap: wrap;
+      }
+    }
   </style>
 </head>
 <body>
@@ -332,6 +751,14 @@
           <span class="d-none d-sm-block text-muted small" style="line-height: 1;">Ujian Praktik Pemrograman Web II</span>
         </div>
       </a>
+      <div class="nav-dashboard-links d-none d-lg-flex" aria-label="Navigasi utama">
+        <a href="#" onclick="app.navTo('home'); return false;">
+          <i class="bi bi-grid-1x2-fill"></i> Dashboard
+        </a>
+        <a href="#identitySection">
+          <i class="bi bi-pencil-square"></i> Mulai Ujian
+        </a>
+      </div>
       <div class="d-flex align-items-center gap-2">
         <button id="navLeaderboardBtn" class="btn btn-outline-custom btn-sm d-flex align-items-center gap-2" onclick="app.navTo('leaderboard')">
           <i class="bi bi-trophy text-warning"></i>
@@ -822,7 +1249,7 @@
     <div class="container text-center small text-muted">
       <div><strong>GitHub Skills Challenge</strong> — Modul Evaluasi Version Control System (VCS) Git & GitHub</div>
       <div class="text-secondary mt-1" style="font-size: 0.75rem;">
-        Identitas dan hasil ujian tersimpan di MySQL lokal; draft sesi aktif tersimpan di browser. Untuk ujian resmi, validasi jawaban, timer, dan autentikasi tetap perlu diamankan di server.
+        Identitas, sesi ujian, timer, validasi jawaban, dan hasil tersimpan atau diverifikasi di server lokal.
       </div>
     </div>
   </footer>
@@ -846,338 +1273,8 @@
   </div>
 
   <script>
-    /**
-     * BANK SOAL UJIAN (10 Teori + 10 Praktik)
-     * Nilai: 5 Poin per soal (Total 20 soal = 100 poin)
-     * Waktu: 30 detik per soal
-     */
-    const EXAM_QUESTIONS = [
-      // SOAL TEORI (1 - 10)
-      {
-        id: 1,
-        type: "theory",
-        category: "Teori VCS",
-        title: "Soal 1 — Version Control System",
-        question: "Apa yang dimaksud dengan Version Control System (VCS)?",
-        options: [
-          { key: "A", text: "Sistem untuk mempercepat koneksi internet." },
-          { key: "B", text: "Sistem untuk mencatat, mengelola, dan melacak perubahan berkas dari waktu ke waktu." },
-          { key: "C", text: "Aplikasi untuk mendesain antarmuka web." },
-          { key: "D", text: "Sistem untuk menghapus semua versi berkas lama." }
-        ],
-        correctKey: "B",
-        explanation: "VCS membantu pengembang melacak perubahan, membandingkan versi, dan memulihkan pekerjaan sebelumnya."
-      },
-      {
-        id: 2,
-        type: "theory",
-        category: "Teori Git & GitHub",
-        title: "Soal 2 — Git dan GitHub",
-        question: "Apa perbedaan utama antara Git dan GitHub?",
-        options: [
-          { key: "A", text: "Git adalah bahasa pemrograman, sedangkan GitHub adalah compiler." },
-          { key: "B", text: "Git adalah sistem version control, sedangkan GitHub adalah platform untuk meng-host repository Git dan berkolaborasi." },
-          { key: "C", text: "Git dan GitHub adalah dua nama untuk aplikasi yang sama." },
-          { key: "D", text: "Git hanya digunakan untuk frontend, sedangkan GitHub hanya untuk backend." }
-        ],
-        correctKey: "B",
-        explanation: "Git mengelola riwayat perubahan secara lokal, sedangkan GitHub menyediakan layanan repository jarak jauh dan fitur kolaborasi."
-      },
-      {
-        id: 3,
-        type: "theory",
-        category: "Teori Perintah Git",
-        title: "Soal 3 — git init",
-        question: "Apa fungsi perintah git init?",
-        options: [
-          { key: "A", text: "Mengirim kode ke GitHub." },
-          { key: "B", text: "Menghapus seluruh riwayat repository." },
-          { key: "C", text: "Menginisialisasi repository Git pada direktori yang digunakan." },
-          { key: "D", text: "Mengunduh repository dari GitHub." }
-        ],
-        correctKey: "C",
-        explanation: "git init membuat repositori Git lokal baru dengan membuat subdirektori .git."
-      },
-      {
-        id: 4,
-        type: "theory",
-        category: "Teori Staging Area",
-        title: "Soal 4 — git add",
-        question: "Apa fungsi perintah git add .?",
-        options: [
-          { key: "A", text: "Menambahkan semua berkas dan perubahan yang relevan di direktori saat ini dan subdirektorinya ke staging area, sesuai aturan Git." },
-          { key: "B", text: "Mengirim seluruh kode ke GitHub." },
-          { key: "C", text: "Menghapus semua berkas yang tidak dipakai." },
-          { key: "D", text: "Membuat branch baru bernama add." }
-        ],
-        correctKey: "A",
-        explanation: "Titik (.) menunjukkan direktori saat ini, merekrut perubahan file ke staging index."
-      },
-      {
-        id: 5,
-        type: "theory",
-        category: "Teori Snapshot",
-        title: "Soal 5 — Commit",
-        question: "Apa fungsi git commit -m \"Pesan perubahan\"?",
-        options: [
-          { key: "A", text: "Membuat repository GitHub baru." },
-          { key: "B", text: "Menyimpan snapshot perubahan yang sudah berada di staging area ke riwayat repository lokal, dengan pesan commit." },
-          { key: "C", text: "Mengunduh seluruh branch dari remote." },
-          { key: "D", text: "Menggabungkan dua branch secara otomatis." }
-        ],
-        correctKey: "B",
-        explanation: "Commit merekam riwayat permanen ke database lokal Git dengan pesan identifikasi."
-      },
-      {
-        id: 6,
-        type: "theory",
-        category: "Teori Branching",
-        title: "Soal 6 — Branch",
-        question: "Mengapa branch digunakan dalam pengembangan software?",
-        options: [
-          { key: "A", text: "Untuk menggantikan fungsi compiler." },
-          { key: "B", text: "Untuk menghapus kebutuhan commit." },
-          { key: "C", text: "Untuk memisahkan pekerjaan atau fitur sehingga dapat dikembangkan tanpa langsung mengubah branch utama." },
-          { key: "D", text: "Untuk mengubah repository privat menjadi publik." }
-        ],
-        correctKey: "C",
-        explanation: "Branch memungkinkan isolasi eksperimen dan fitur sebelum di-merge ke branch utama."
-      },
-      {
-        id: 7,
-        type: "theory",
-        category: "Teori Sinkronisasi Remote",
-        title: "Soal 7 — Push dan Pull",
-        question: "Apa perbedaan git push dan git pull?",
-        options: [
-          { key: "A", text: "Push mengambil perubahan, sedangkan pull menghapus perubahan." },
-          { key: "B", text: "Push mengirim commit lokal ke remote, sedangkan pull mengambil perubahan dari remote dan mengintegrasikannya ke branch lokal." },
-          { key: "C", text: "Push membuat folder, sedangkan pull membuat berkas." },
-          { key: "D", text: "Keduanya selalu mempunyai fungsi yang sama." }
-        ],
-        correctKey: "B",
-        explanation: "Push mengunggah riwayat commit ke remote, sedangkan pull mengunduh dan menggabungkannya."
-      },
-      {
-        id: 8,
-        type: "theory",
-        category: "Teori Clone Repository",
-        title: "Soal 8 — Clone",
-        question: "Apa fungsi git clone?",
-        options: [
-          { key: "A", text: "Membuat commit kosong." },
-          { key: "B", text: "Menghapus repository remote." },
-          { key: "C", text: "Mengubah nama branch." },
-          { key: "D", text: "Menyalin repository remote beserta riwayatnya ke lingkungan lokal." }
-        ],
-        correctKey: "D",
-        explanation: "git clone menduplikasi seluruh repository termasuk seluruh commit dan branch."
-      },
-      {
-        id: 9,
-        type: "theory",
-        category: "Teori Kolaborasi Git",
-        title: "Soal 9 — Merge Conflict",
-        question: "Apa yang dimaksud dengan merge conflict?",
-        options: [
-          { key: "A", text: "Kondisi ketika Git tidak dapat menggabungkan perubahan tertentu secara otomatis, misalnya karena perubahan yang bertentangan pada bagian berkas yang sama." },
-          { key: "B", text: "Kondisi ketika koneksi internet terlalu cepat." },
-          { key: "C", text: "Kondisi ketika semua commit terhapus." },
-          { key: "D", text: "Kondisi ketika GitHub tidak memiliki repository." }
-        ],
-        correctKey: "A",
-        explanation: "Konflik terjadi ketika dua commit berbeda mengubah baris kode yang sama dan membutuhkan resolusi manual pengembang."
-      },
-      {
-        id: 10,
-        type: "theory",
-        category: "Teori Sintaks & Opsi Git",
-        title: "Soal 10 — Opsi Perintah Git",
-        question: "Manakah pernyataan yang benar tentang opsi -m, -u, -c, dan -M pada perintah Git?",
-        options: [
-          { key: "A", text: "Semua opsi tersebut memiliki fungsi yang sama." },
-          { key: "B", text: "-m selalu berarti membuat branch, sedangkan -M selalu berarti commit." },
-          { key: "C", text: "-m dapat digunakan untuk pesan commit; -u untuk menetapkan upstream pada konteks tertentu seperti push; -c dapat membuat branch baru melalui git switch -c; dan -M dapat memaksa penggantian nama branch melalui git branch -M." },
-          { key: "D", text: "-m dan -M selalu dapat saling menggantikan." }
-        ],
-        correctKey: "C",
-        explanation: "Arti opsi bergantung pada perintah Git yang digunakan. Huruf kecil dan huruf besar dapat mempunyai fungsi berbeda secara signifikan."
-      },
-
-      // SOAL PRAKTIK (11 - 20)
-      {
-        id: 11,
-        type: "practice",
-        category: "Praktik Terminal Git",
-        title: "Soal 11 — Inisialisasi Repository",
-        question: "Tuliskan perintah untuk menginisialisasi repository Git pada direktori aktif.",
-        guidance: "Gunakan perintah dasar inisialisasi git.",
-        referenceAnswer: "git init",
-        validate: (input) => {
-          if (!input) return false;
-          const tokens = input.trim().split(/\s+/);
-          return tokens.length === 2 && tokens[0] === "git" && tokens[1] === "init";
-        }
-      },
-      {
-        id: 12,
-        type: "practice",
-        category: "Praktik Terminal Git",
-        title: "Soal 12 — Memeriksa Status Repository",
-        question: "Tuliskan perintah untuk melihat status berkas pada repository Git lokal.",
-        guidance: "Periksa status staging dan working tree.",
-        referenceAnswer: "git status",
-        validate: (input) => {
-          if (!input) return false;
-          const tokens = input.trim().split(/\s+/);
-          return tokens.length === 2 && tokens[0] === "git" && tokens[1] === "status";
-        }
-      },
-      {
-        id: 13,
-        type: "practice",
-        category: "Praktik Terminal Git",
-        title: "Soal 13 — Menambahkan Perubahan ke Staging Area",
-        question: "Tuliskan perintah untuk menambahkan semua perubahan yang relevan di direktori saat ini dan subdirektorinya ke staging area.",
-        guidance: "Gunakan tanda titik sebagai argumen direktori aktif.",
-        referenceAnswer: "git add .",
-        validate: (input) => {
-          if (!input) return false;
-          const tokens = input.trim().split(/\s+/);
-          return tokens.length === 3 && tokens[0] === "git" && tokens[1] === "add" && tokens[2] === ".";
-        }
-      },
-      {
-        id: 14,
-        type: "practice",
-        category: "Praktik Terminal Git",
-        title: "Soal 14 — Membuat Commit",
-        question: "Tuliskan perintah untuk membuat commit dengan pesan Menambahkan halaman utama.",
-        guidance: "Gunakan opsi -m (huruf kecil) dan kutip pesan secara tepat. Jangan gunakan -M.",
-        referenceAnswer: 'git commit -m "Menambahkan halaman utama"',
-        validate: (input) => {
-          if (!input) return false;
-          const trimmed = input.trim();
-          // Regex: git + space + commit + space + -m + space + ["']Menambahkan halaman utama["']
-          // Menolak -M secara ketat
-          const regex = /^git\s+commit\s+-m\s+["']Menambahkan halaman utama["']$/;
-          return regex.test(trimmed);
-        }
-      },
-      {
-        id: 15,
-        type: "practice",
-        category: "Praktik Terminal Git",
-        title: "Soal 15 — Memeriksa Branch dan Membuat Branch Baru",
-        question: "Tuliskan dua perintah secara berurutan:\n1. Melihat daftar branch lokal.\n2. Membuat sekaligus berpindah ke branch baru bernama fitur-login.",
-        guidance: "Tuliskan perintah pada 2 baris atau dipisahkan enter. Perintah pertama melihat branch, perintah kedua switch -c.",
-        referenceAnswer: "git branch\ngit switch -c fitur-login",
-        validate: (input) => {
-          if (!input) return false;
-          // Memecah berdasarkan newline atau semicolon jika mahasiswa memisahkan baris
-          const lines = input.trim().split(/[\r\n;]+/).map(l => l.trim()).filter(l => l.length > 0);
-          if (lines.length !== 2) return false;
-          
-          const cmd1 = lines[0].split(/\s+/);
-          const cmd2 = lines[1].split(/\s+/);
-
-          const isCmd1Valid = cmd1.length === 2 && cmd1[0] === "git" && cmd1[1] === "branch";
-          // git switch -c fitur-login OR git checkout -b fitur-login
-          const isCmd2Switch = cmd2.length === 4 && cmd2[0] === "git" && cmd2[1] === "switch" && cmd2[2] === "-c" && cmd2[3] === "fitur-login";
-          const isCmd2Checkout = cmd2.length === 4 && cmd2[0] === "git" && cmd2[1] === "checkout" && cmd2[2] === "-b" && cmd2[3] === "fitur-login";
-
-          return isCmd1Valid && (isCmd2Switch || isCmd2Checkout);
-        }
-      },
-      {
-        id: 16,
-        type: "practice",
-        category: "Praktik Git Remote",
-        title: "Soal 16 — Menambahkan Remote Repository",
-        question: "Tuliskan perintah untuk menambahkan remote bernama origin dengan URL https://github.com/mahasiswa/pemrograman-web-ii.git.",
-        guidance: "Format: git remote add <name> <url>",
-        referenceAnswer: "git remote add origin https://github.com/mahasiswa/pemrograman-web-ii.git",
-        validate: (input) => {
-          if (!input) return false;
-          const tokens = input.trim().split(/\s+/);
-          return tokens.length === 5 && 
-                 tokens[0] === "git" && 
-                 tokens[1] === "remote" && 
-                 tokens[2] === "add" && 
-                 tokens[3] === "origin" && 
-                 tokens[4] === "https://github.com/mahasiswa/pemrograman-web-ii.git";
-        }
-      },
-      {
-        id: 17,
-        type: "practice",
-        category: "Praktik Git Push",
-        title: "Soal 17 — Push dan Upstream",
-        question: "Tuliskan perintah untuk mengirim branch main ke remote origin sekaligus menetapkan upstream.",
-        guidance: "Gunakan opsi -u (upstream), bukan -m. Target: origin main.",
-        referenceAnswer: "git push -u origin main",
-        validate: (input) => {
-          if (!input) return false;
-          const tokens = input.trim().split(/\s+/);
-          // git push -u origin main OR git push --set-upstream origin main
-          if (tokens.length === 5 && tokens[0] === "git" && tokens[1] === "push" && (tokens[2] === "-u" || tokens[2] === "--set-upstream") && tokens[3] === "origin" && tokens[4] === "main") {
-            return true;
-          }
-          // Alternatif urutan: git push origin main -u
-          if (tokens.length === 5 && tokens[0] === "git" && tokens[1] === "push" && tokens[2] === "origin" && tokens[3] === "main" && (tokens[4] === "-u" || tokens[4] === "--set-upstream")) {
-            return true;
-          }
-          return false;
-        }
-      },
-      {
-        id: 18,
-        type: "practice",
-        category: "Praktik Git Pull",
-        title: "Soal 18 — Pull dari Remote",
-        question: "Tuliskan perintah untuk mengambil dan mengintegrasikan perubahan branch main dari remote origin.",
-        guidance: "Sintaks: git pull <remote> <branch>",
-        referenceAnswer: "git pull origin main",
-        validate: (input) => {
-          if (!input) return false;
-          const tokens = input.trim().split(/\s+/);
-          return tokens.length === 4 && tokens[0] === "git" && tokens[1] === "pull" && tokens[2] === "origin" && tokens[3] === "main";
-        }
-      },
-      {
-        id: 19,
-        type: "practice",
-        category: "Praktik Git Merge",
-        title: "Soal 19 — Merge Branch",
-        question: "Jika sedang berada di branch main, tuliskan perintah untuk menggabungkan perubahan dari branch fitur-login ke branch yang sedang aktif.",
-        guidance: "Gabungkan branch sumber fitur-login ke branch aktif saat ini.",
-        referenceAnswer: "git merge fitur-login",
-        validate: (input) => {
-          if (!input) return false;
-          const tokens = input.trim().split(/\s+/);
-          return tokens.length === 3 && tokens[0] === "git" && tokens[1] === "merge" && tokens[2] === "fitur-login";
-        }
-      },
-      {
-        id: 20,
-        type: "practice",
-        category: "Praktik GitHub CLI",
-        title: "Soal 20 — Membuat Pull Request",
-        question: "Tuliskan perintah GitHub CLI untuk membuat Pull Request dengan judul Implementasi fitur login dan base branch main, dari branch yang sedang aktif.",
-        guidance: "Gunakan perintah gh pr create, dengan flag --base main dan --title \"Implementasi fitur login\".",
-        referenceAnswer: 'gh pr create --base main --title "Implementasi fitur login"',
-        validate: (input) => {
-          if (!input) return false;
-          const trimmed = input.trim();
-          // Variasi 1: gh pr create --base main --title "Implementasi fitur login"
-          // Variasi 2: gh pr create --title "Implementasi fitur login" --base main
-          // Variasi 3: gh pr create -B main -t "Implementasi fitur login"
-          const regex1 = /^gh\s+pr\s+create\s+(--base|-B)\s+main\s+(--title|-t)\s+["']Implementasi fitur login["']$/;
-          const regex2 = /^gh\s+pr\s+create\s+(--title|-t)\s+["']Implementasi fitur login["']\s+(--base|-B)\s+main$/;
-          return regex1.test(trimmed) || regex2.test(trimmed);
-        }
-      }
-    ];
+    const TOTAL_QUESTIONS = 20;
+    const QUESTION_DURATION_SECONDS = 30;
 
     /**
      * APP ARCHITECTURE CONTROLLER
@@ -1191,14 +1288,14 @@
         this.currentStudent = null;
         this.currentQuestionIndex = 0;
         this.userAnswers = []; // { qId, answer, isCorrect, points }
+        this.currentQuestion = null;
         this.currentDraftAnswer = '';
         this.attemptId = null;
         this.timerInterval = null;
         this.questionDeadlineTimestamp = 0;
-        this.questionDurationSec = 30;
+        this.serverClockOffset = 0;
         this.examStartTimestamp = 0;
         this.isSubmitting = false;
-        this.isFinishing = false;
 
         this.init();
       }
@@ -1226,7 +1323,9 @@
         const response = await fetch(`${this.apiUrl}?action=${encodeURIComponent(action)}`, options);
         const data = await response.json();
         if (!response.ok || !data.success) {
-          throw new Error(data.message || 'Permintaan ke server gagal.');
+          const error = new Error(data.message || 'Permintaan ke server gagal.');
+          error.status = response.status;
+          throw error;
         }
         return data;
       }
@@ -1357,8 +1456,7 @@
         const startButton = document.getElementById('btnStartExam');
         startButton.disabled = true;
         try {
-          await this.apiRequest('participant', 'POST', student);
-          this.startNewExam(student);
+          await this.startNewExam(student);
         } catch (error) {
           this.showRequestError(error);
         } finally {
@@ -1366,83 +1464,73 @@
         }
       }
 
-      startNewExam(student) {
-        this.currentStudent = student;
-        this.currentQuestionIndex = 0;
+      async startNewExam(student) {
+        const response = await this.apiRequest('start', 'POST', student);
+        this.attemptId = response.data.attemptId;
+        this.currentStudent = response.data.student;
         this.userAnswers = [];
         this.currentDraftAnswer = '';
-        this.attemptId = window.crypto && typeof window.crypto.randomUUID === 'function'
-          ? window.crypto.randomUUID()
-          : `attempt-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-        this.examStartTimestamp = Date.now();
+        this.examStartTimestamp = response.data.startedTimestamp;
 
         // Update header UI
-        document.getElementById('examStudentName').textContent = student.name;
-        document.getElementById('examStudentNim').textContent = `NIM: ${student.nim}`;
-        document.getElementById('examBadgeClass').textContent = student.studentClass;
+        document.getElementById('examStudentName').textContent = this.currentStudent.name;
+        document.getElementById('examStudentNim').textContent = `NIM: ${this.currentStudent.nim}`;
+        document.getElementById('examBadgeClass').textContent = this.currentStudent.studentClass;
 
         this.navTo('exam');
         this.renderDotsNavigation();
-        this.loadQuestion(0);
+        this.saveActiveSession();
+        this.loadQuestion(response.data);
       }
 
       saveActiveSession() {
-        const sessionPayload = {
-          student: this.currentStudent,
-          questionIndex: this.currentQuestionIndex,
-          userAnswers: this.userAnswers,
-          draftAnswer: this.currentDraftAnswer,
+        if (!this.attemptId) return;
+        localStorage.setItem(this.storageKeyActiveSession, JSON.stringify({
           attemptId: this.attemptId,
-          examStartTimestamp: this.examStartTimestamp,
-          questionDeadlineTimestamp: this.questionDeadlineTimestamp
-        };
-        localStorage.setItem(this.storageKeyActiveSession, JSON.stringify(sessionPayload));
+          draftAnswer: this.currentDraftAnswer,
+          draftQuestion: this.currentQuestionIndex + 1
+        }));
       }
 
       clearActiveSession() {
         localStorage.removeItem(this.storageKeyActiveSession);
       }
 
-      restoreActiveSession() {
+      async restoreActiveSession() {
         const raw = localStorage.getItem(this.storageKeyActiveSession);
         if (!raw) return;
 
         try {
           const session = JSON.parse(raw);
-          if (session && session.student && Array.isArray(session.userAnswers)) {
-            this.currentStudent = session.student;
-            this.currentQuestionIndex = session.questionIndex;
-            this.userAnswers = session.userAnswers;
+          if (session && session.attemptId) {
+            this.attemptId = session.attemptId;
             this.currentDraftAnswer = typeof session.draftAnswer === 'string' ? session.draftAnswer : '';
-            this.attemptId = session.attemptId || `attempt-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-            this.examStartTimestamp = session.examStartTimestamp || Date.now();
-
-            // Set UI
-            document.getElementById('examStudentName').textContent = session.student.name;
-            document.getElementById('examStudentNim').textContent = `NIM: ${session.student.nim}`;
-            document.getElementById('examBadgeClass').textContent = session.student.studentClass;
-
+            const response = await this.apiRequest('resume', 'POST', { attemptId: this.attemptId });
+            if (response.completed) {
+              this.currentStudent = response.student;
+              this.finishExam(response.result);
+              return;
+            }
+            if (session.draftQuestion !== response.data.currentQuestion) {
+              this.currentDraftAnswer = '';
+            }
+            this.currentStudent = response.data.student;
+            this.examStartTimestamp = response.data.startedTimestamp;
+            this.updateExamStudentHeader();
             this.navTo('exam');
             this.renderDotsNavigation();
-
-            // Cek apakah deadline soal terakhir masih tersisa
-            const now = Date.now();
-            if (session.questionDeadlineTimestamp && session.questionDeadlineTimestamp > now) {
-              this.questionDeadlineTimestamp = session.questionDeadlineTimestamp;
-              this.loadQuestion(this.currentQuestionIndex, true);
-            } else {
-              // Jika deadline lewat saat tab ditutup, kunci jawaban soal tersebut sebagai kosong dan lanjut
-              if (this.currentQuestionIndex < EXAM_QUESTIONS.length) {
-                this.recordAnswerAndAdvance(this.currentDraftAnswer, false, true);
-              } else {
-                this.finishExam();
-              }
-            }
+            this.loadQuestion(response.data);
           }
         } catch (e) {
-          console.error("Gagal memulihkan sesi ujian", e);
-          this.clearActiveSession();
+          this.showRequestError(e);
+          if ([404, 410, 422].includes(e.status)) this.clearActiveSession();
         }
+      }
+
+      updateExamStudentHeader() {
+        document.getElementById('examStudentName').textContent = this.currentStudent.name;
+        document.getElementById('examStudentNim').textContent = `NIM: ${this.currentStudent.nim}`;
+        document.getElementById('examBadgeClass').textContent = this.currentStudent.studentClass;
       }
 
       confirmResetExam() {
@@ -1454,29 +1542,33 @@
           iconBg: "bg-danger-subtle text-danger",
           confirmText: "Ya, Keluar Ujian",
           cancelText: "Lanjutkan Mengerjakan",
-          onConfirm: () => {
+          onConfirm: async () => {
             clearInterval(this.timerInterval);
+            try {
+              await this.apiRequest('cancel', 'POST', { attemptId: this.attemptId });
+            } catch (error) {
+              this.showRequestError(error);
+              return;
+            }
             this.clearActiveSession();
+            this.attemptId = null;
             this.navTo('home');
           }
         });
       }
 
-      loadQuestion(index, isResumed = false) {
-        if (index >= EXAM_QUESTIONS.length) {
-          this.finishExam();
-          return;
-        }
-
-        this.currentQuestionIndex = index;
+      loadQuestion(data) {
+        this.currentQuestionIndex = data.currentQuestion - 1;
         this.isSubmitting = false;
-
-        const q = EXAM_QUESTIONS[index];
+        this.currentQuestion = data.question;
+        this.questionDeadlineTimestamp = data.deadlineTimestamp;
+        this.serverClockOffset = data.serverNowTimestamp - Date.now();
+        const q = this.currentQuestion;
 
         // Update progress badge
-        const padIndex = String(index + 1).padStart(2, '0');
-        document.getElementById('examProgressCount').textContent = `Soal ${padIndex} dari 20`;
-        document.getElementById('navIndicatorSummary').textContent = `${index + 1} / 20`;
+        const padIndex = String(data.currentQuestion).padStart(2, '0');
+        document.getElementById('examProgressCount').textContent = `Soal ${padIndex} dari ${data.questionCount}`;
+        document.getElementById('navIndicatorSummary').textContent = `${data.currentQuestion} / ${data.questionCount}`;
         document.getElementById('badgeCategory').textContent = `Kategori: ${q.category}`;
         document.getElementById('questionTitle').textContent = q.title;
         document.getElementById('questionDesc').innerHTML = `<strong>Instruksi:</strong> ${q.question}<br><span class="text-secondary">${q.guidance || ''}</span>`;
@@ -1492,22 +1584,15 @@
           areaPractice.classList.add('d-none');
           areaTheory.classList.remove('d-none');
           this.renderTheoryOptions(q);
-          if (isResumed && this.currentDraftAnswer) {
-            this.selectTheoryOption(this.currentDraftAnswer);
+          if (this.currentDraftAnswer) {
+            this.markTheoryOption(this.currentDraftAnswer);
           }
         } else {
           areaTheory.classList.add('d-none');
           areaPractice.classList.remove('d-none');
           const pInput = document.getElementById('practiceInput');
-          pInput.value = isResumed ? this.currentDraftAnswer : '';
-          this.currentDraftAnswer = pInput.value;
+          pInput.value = this.currentDraftAnswer;
           setTimeout(() => pInput.focus(), 100);
-        }
-
-        // Setup Timestamp Deadline
-        if (!isResumed) {
-          this.questionDeadlineTimestamp = Date.now() + (this.questionDurationSec * 1000);
-          this.saveActiveSession();
         }
 
         this.startTimer();
@@ -1532,6 +1617,12 @@
       }
 
       selectTheoryOption(key) {
+        this.markTheoryOption(key);
+        this.currentDraftAnswer = key;
+        this.saveActiveSession();
+      }
+
+      markTheoryOption(key) {
         const cards = document.querySelectorAll('.option-card');
         cards.forEach(c => {
           if (c.getAttribute('data-key') === key) {
@@ -1540,13 +1631,13 @@
             c.classList.remove('selected');
           }
         });
-        this.currentDraftAnswer = key;
-        this.saveActiveSession();
       }
 
       clearTerminal() {
         const input = document.getElementById('practiceInput');
         input.value = '';
+        this.currentDraftAnswer = '';
+        this.saveActiveSession();
         input.focus();
       }
 
@@ -1558,7 +1649,7 @@
         const progressBar = document.getElementById('questionProgressBar');
 
         const updateTick = () => {
-          const now = Date.now();
+          const now = Date.now() + this.serverClockOffset;
           const remainingMs = Math.max(0, this.questionDeadlineTimestamp - now);
           const remainingSec = Math.ceil(remainingMs / 1000);
 
@@ -1566,7 +1657,7 @@
           timerEl.textContent = String(remainingSec).padStart(2, '0');
 
           // Hitung persentase progress bar
-          const percent = (remainingMs / (this.questionDurationSec * 1000)) * 100;
+          const percent = (remainingMs / (QUESTION_DURATION_SECONDS * 1000)) * 100;
           progressBar.style.width = `${Math.max(0, Math.min(100, percent))}%`;
 
           // Visual warning
@@ -1595,15 +1686,11 @@
       handleTimeout() {
         if (this.isSubmitting) return;
         this.isSubmitting = true;
-
-        // Ambil apapun yang sempat diisi atau anggap kosong
-        const currentAnswer = this.getCurrentInputtedAnswer();
-        this.recordAnswerAndAdvance(currentAnswer, false, true);
+        this.syncServerQuestion();
       }
 
       getCurrentInputtedAnswer() {
-        const q = EXAM_QUESTIONS[this.currentQuestionIndex];
-        if (q.type === 'theory') {
+        if (this.currentQuestion.type === 'theory') {
           const selected = document.querySelector('.option-card.selected');
           return selected ? selected.getAttribute('data-key') : "";
         } else {
@@ -1612,54 +1699,43 @@
         }
       }
 
-      submitCurrentAnswer(isSkipped = false) {
+      async submitCurrentAnswer(isSkipped = false) {
         if (this.isSubmitting) return;
         this.isSubmitting = true;
         clearInterval(this.timerInterval);
-
-        let answer = isSkipped ? "" : this.getCurrentInputtedAnswer();
-        this.recordAnswerAndAdvance(answer, isSkipped, false);
+        const answer = isSkipped ? '' : this.getCurrentInputtedAnswer();
+        try {
+          const response = await this.apiRequest('answer', 'POST', {
+            attemptId: this.attemptId,
+            questionNumber: this.currentQuestionIndex + 1,
+            answer
+          });
+          this.currentDraftAnswer = '';
+          if (response.completed) {
+            this.finishExam(response.result);
+          } else {
+            this.loadQuestion(response.data);
+          }
+        } catch (error) {
+          this.isSubmitting = false;
+          this.showRequestError(error);
+          this.startTimer();
+        }
       }
 
-      recordAnswerAndAdvance(rawAnswer, isSkipped, isTimeout) {
-        const q = EXAM_QUESTIONS[this.currentQuestionIndex];
-        let isCorrect = false;
-        let points = 0;
-
-        if (!isSkipped && rawAnswer) {
-          if (q.type === 'theory') {
-            // Validator Teori Pilihan Ganda
-            isCorrect = (rawAnswer.trim().toUpperCase() === q.correctKey.toUpperCase());
+      async syncServerQuestion() {
+        try {
+          const response = await this.apiRequest('current', 'POST', { attemptId: this.attemptId });
+          if (response.completed) {
+            this.finishExam(response.result);
           } else {
-            // Validator Praktik Terminal Mandiri
-            isCorrect = q.validate(rawAnswer);
+            this.currentDraftAnswer = '';
+            this.loadQuestion(response.data);
           }
-        }
-
-        if (isCorrect) {
-          points = 5;
-        }
-
-        this.userAnswers.push({
-          questionId: q.id,
-          questionTitle: q.title,
-          type: q.type,
-          studentAnswer: rawAnswer || "",
-          correctKeyOrRef: q.type === 'theory' ? q.correctKey : q.referenceAnswer,
-          isCorrect: isCorrect,
-          points: points,
-          isTimeout: !!isTimeout
-        });
-
-        // Pindah ke soal berikutnya
-        const nextIdx = this.currentQuestionIndex + 1;
-        this.currentDraftAnswer = '';
-        this.currentQuestionIndex = nextIdx;
-        this.saveActiveSession();
-        if (nextIdx < EXAM_QUESTIONS.length) {
-          this.loadQuestion(nextIdx);
-        } else {
-          this.finishExam();
+        } catch (error) {
+          this.isSubmitting = false;
+          this.showRequestError(error);
+          setTimeout(() => this.handleTimeout(), 3000);
         }
       }
 
@@ -1667,7 +1743,7 @@
         const container = document.getElementById('questionDotsContainer');
         container.innerHTML = '';
 
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < TOTAL_QUESTIONS; i++) {
           const dot = document.createElement('div');
           dot.id = `dotNav-${i}`;
           dot.className = 'border rounded text-center small font-mono py-1';
@@ -1680,11 +1756,11 @@
       }
 
       updateDotsUI() {
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < TOTAL_QUESTIONS; i++) {
           const dot = document.getElementById(`dotNav-${i}`);
           if (!dot) continue;
 
-          if (i < this.userAnswers.length) {
+          if (i < this.currentQuestionIndex) {
             // Sudah dijawab
             dot.className = 'border rounded text-center small font-mono py-1 bg-secondary-subtle text-secondary fw-bold';
           } else if (i === this.currentQuestionIndex) {
@@ -1697,19 +1773,14 @@
         }
       }
 
-      async finishExam() {
-        if (this.isFinishing) return;
-        this.isFinishing = true;
+      finishExam(result) {
         clearInterval(this.timerInterval);
-
-        const totalScore = this.userAnswers.reduce((acc, cur) => acc + cur.points, 0);
-        const totalCorrect = this.userAnswers.filter(a => a.isCorrect).length;
-        const totalWrong = 20 - totalCorrect;
-        
-        const theoryCorrect = this.userAnswers.filter(a => a.type === 'theory' && a.isCorrect).length;
-        const practiceCorrect = this.userAnswers.filter(a => a.type === 'practice' && a.isCorrect).length;
-
-        const totalElapsedSec = Math.round((Date.now() - this.examStartTimestamp) / 1000);
+        this.userAnswers = result.details;
+        const totalScore = result.score;
+        const totalCorrect = result.totalCorrect;
+        const totalWrong = result.totalQuestions - totalCorrect;
+        const theoryCorrect = result.theoryCorrect;
+        const practiceCorrect = result.practiceCorrect;
 
         // Kategori predikat
         let gradeCategory = "Perlu Belajar Lagi";
@@ -1739,29 +1810,8 @@
         document.getElementById('resTheoryRatio').textContent = `${theoryCorrect}/10`;
         document.getElementById('resPracticeRatio').textContent = `${practiceCorrect}/10`;
 
-        // Simpan ke Leaderboard (Cegah duplikasi ID dengan crypto UUID)
-        const result = {
-          attemptId: this.attemptId,
-          student: this.currentStudent,
-          score: totalScore,
-          totalCorrect,
-          theoryCorrect,
-          practiceCorrect,
-          totalQuestions: EXAM_QUESTIONS.length,
-          unansweredCount: this.userAnswers.filter(answer => !answer.studentAnswer).length,
-          completionTimeSeconds: totalElapsedSec,
-          details: this.userAnswers
-        };
-
-        try {
-          await this.apiRequest('result', 'POST', result);
-        } catch (error) {
-          this.isFinishing = false;
-          this.showRequestError(error);
-          return;
-        }
-
         this.clearActiveSession();
+        this.attemptId = null;
         // Render tabel review
         this.renderReviewTable();
 
@@ -1968,7 +2018,7 @@
         this.showCustomModal({
           title: "Hapus Riwayat Leaderboard?",
           sub: "Tindakan Permanen",
-          message: "Seluruh data riwayat hasil ujian mahasiswa di browser ini akan dihapus. Anda dapat mengekspor file Excel terlebih dahulu jika diperlukan.",
+          message: "Seluruh data hasil ujian di database lokal akan dihapus. Identitas peserta tetap tersimpan. Ekspor data terlebih dahulu jika diperlukan.",
           iconClass: "bi bi-trash-fill",
           iconBg: "bg-danger-subtle text-danger",
           confirmText: "Ya, Hapus Semua",
